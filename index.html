@@ -3,132 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PLP TOP UP - Official Digital Game Store & Top Up</title>
+  <title>PLP TOP UP - Store Top Up Resmi</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
 
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans', sans-serif; }
-    body { background:#080c14; color:#f1f5f9; min-height:100vh; padding-bottom:60px; }
+    body { background:#0b0f19; color:#f1f5f9; min-height:100vh; padding-bottom:50px; }
 
     /* HEADER & NAVBAR */
-    header { background:#0f172a; border-bottom:1px solid #1e293b; position:sticky; top:0; z-index:100; }
-    .nav-container { max-width:1200px; margin:0 auto; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+    header { background:#111827; border-bottom:1px solid #1f2937; position:sticky; top:0; z-index:100; }
+    .nav-container { max-width:1100px; margin:0 auto; padding:10px 14px; display:flex; justify-content:space-between; align-items:center; gap:8px; }
     
-    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
-    
-    /* CUSTOM PIKACHU LOGO (PLP PROJECT) */
-    .plp-logo-box {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #0284c7, #06b6d4, #2563eb);
-      border: 2px solid #38bdf8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
-      position: relative;
-      overflow: hidden;
-    }
-    .plp-logo-box::after {
-      content: '⚡';
-      font-size: 22px;
-      filter: drop-shadow(0 0 4px #facc15);
-    }
-    .brand-title { font-size:1.2rem; font-weight:800; color:#38bdf8; letter-spacing:0.5px; }
+    .brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .brand-logo { width:36px; height:36px; border-radius:8px; object-fit:cover; border:1px solid #38bdf8; }
+    .brand-title { font-size:1.05rem; font-weight:800; color:#38bdf8; letter-spacing:0.3px; }
 
-    .search-box { flex:1; min-width:180px; max-width:380px; }
-    .search-box input { width:100%; padding:9px 14px; background:#080c14; border:1px solid #334155; border-radius:8px; color:#fff; outline:none; font-size:0.85rem; }
-    .search-box input:focus { border-color:#38bdf8; }
+    .search-box { flex:1; max-width:260px; }
+    .search-box input { width:100%; padding:7px 12px; background:#0b0f19; border:1px solid #374151; border-radius:6px; color:#fff; font-size:0.8rem; outline:none; }
 
-    .nav-actions { display:flex; gap:8px; align-items:center; }
-    .btn { background:#1e293b; border:1px solid #334155; color:#fff; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:700; font-size:0.75rem; white-space:nowrap; }
+    .nav-actions { display:flex; gap:6px; align-items:center; }
+    .btn { background:#1f2937; border:1px solid #374151; color:#fff; padding:6px 10px; border-radius:6px; cursor:pointer; font-weight:700; font-size:0.75rem; }
     .btn-primary { background:#2563eb; border:none; }
-    .btn-primary:hover { background:#1d4ed8; }
 
-    .user-badge { display:none; background:linear-gradient(135deg, #0284c7, #2563eb); padding:6px 14px; border-radius:20px; font-size:0.8rem; font-weight:800; color:#fff; }
+    /* CATEGORIES BAR */
+    .cat-bar { max-width:1100px; margin:0 auto; padding:0 14px 8px 14px; display:flex; gap:6px; overflow-x:auto; }
+    .cat-btn { background:transparent; border:none; color:#9ca3af; padding:5px 12px; cursor:pointer; font-weight:600; border-radius:6px; white-space:nowrap; font-size:0.8rem; }
+    .cat-btn.active, .cat-btn:hover { background:#1f2937; color:#38bdf8; }
 
-    /* CATEGORIES & NAVIGATION */
-    .cat-bar { max-width:1200px; margin:0 auto; padding:0 16px 10px 16px; display:flex; gap:6px; overflow-x:auto; }
-    .cat-btn { background:transparent; border:none; color:#94a3b8; padding:6px 14px; cursor:pointer; font-weight:600; border-radius:6px; white-space:nowrap; font-size:0.85rem; }
-    .cat-btn.active, .cat-btn:hover { background:#1e293b; color:#38bdf8; }
+    .container { max-width:1100px; margin:12px auto; padding:0 14px; }
 
-    /* MAIN CONTAINER */
-    .container { max-width:1200px; margin:16px auto; padding:0 16px; }
-
-    /* HERO BANNER */
+    /* HERO BANNER KOMPAK */
     .hero { 
-      background: linear-gradient(135deg, #0f172a, #0369a1, #1e1b4b); 
-      border-radius:16px; 
-      padding:24px; 
-      border:1px solid #38bdf8; 
-      margin-bottom:24px; 
+      background: linear-gradient(135deg, #1e1b4b, #0f172a); 
+      border-radius:12px; 
+      padding:16px; 
+      border:1px solid #1f2937; 
+      margin-bottom:16px; 
       display: flex;
       align-items: center;
-      gap: 20px;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+      gap: 14px;
     }
-    .hero-img-box { 
-      width: 80px; 
-      height: 80px; 
-      border-radius: 16px; 
-      border: 2px solid #facc15; 
-      background: linear-gradient(135deg, #0284c7, #3b82f6);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size: 40px;
-      box-shadow:0 0 15px rgba(250, 204, 21, 0.4); 
-    }
+    .hero-img { width: 56px; height: 56px; border-radius: 12px; border: 1.5px solid #38bdf8; object-fit: cover; }
     .hero-text { flex: 1; }
-    .hero-badge { background:#2563eb; color:#fff; padding:4px 10px; border-radius:20px; font-size:0.75rem; font-weight:800; display:inline-block; margin-bottom:8px; }
-    .hero h1 { font-size:1.5rem; font-weight:800; margin-bottom:6px; color:#fff; }
-    .hero p { color:#cbd5e1; max-width:550px; font-size:0.85rem; }
+    .hero-badge { background:#2563eb; color:#fff; padding:2px 8px; border-radius:12px; font-size:0.65rem; font-weight:800; display:inline-block; margin-bottom:4px; }
+    .hero h1 { font-size:1.1rem; font-weight:800; color:#fff; }
+    .hero p { color:#9ca3af; font-size:0.75rem; }
 
-    /* GRID KATALOG GAME */
-    .section-title { font-size:1.15rem; font-weight:800; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; }
-    .game-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(170px, 1fr)); gap:14px; margin-bottom:32px; }
-    .game-card { background:#0f172a; border:1px solid #1e293b; border-radius:14px; overflow:hidden; transition:all 0.2s; cursor:pointer; }
-    .game-card:hover { transform:translateY(-4px); border-color:#38bdf8; box-shadow:0 8px 20px rgba(56, 189, 248, 0.2); }
+    /* GRID PRODUK KECIL & KOMPAK (2 KOLOM DI HP) */
+    .section-title { font-size:1rem; font-weight:800; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; }
+    .game-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:10px; margin-bottom:24px; }
+    @media(min-width: 640px) { .game-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } }
+
+    .game-card { background:#111827; border:1px solid #1f2937; border-radius:10px; overflow:hidden; transition:transform 0.15s; }
+    .game-card:active { transform:scale(0.98); }
     
-    /* VECTOR POSTER CUSTOM BANNER */
-    .poster-box {
-      height: 125px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      border-bottom: 1px solid #1e293b;
+    .poster-img { 
+      height: 95px; 
+      width: 100%; 
+      object-fit: cover;
+      display: block;
+      background: #1f2937;
     }
-    .poster-icon { font-size: 38px; margin-bottom: 4px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
-    .poster-title { font-size: 0.85rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-    .poster-tag { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.6); padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; color: #38bdf8; border: 1px solid #38bdf8; font-weight:700; }
 
-    .card-body { padding:12px; }
-    .card-title { font-weight:700; font-size:0.85rem; margin-bottom:4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .card-meta { font-size:0.72rem; color:#64748b; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; }
-    .card-price { font-weight:800; color:#38bdf8; font-size:0.9rem; }
-    .btn-card { width:100%; padding:8px; border:none; border-radius:8px; font-weight:700; font-size:0.78rem; cursor:pointer; background:#2563eb; color:#fff; transition: background 0.2s; }
-    .btn-card:hover { background:#1d4ed8; }
+    .card-body { padding:8px 10px; }
+    .card-title { font-weight:700; font-size:0.78rem; margin-bottom:2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card-meta { font-size:0.68rem; color:#6b7280; margin-bottom:8px; display:flex; justify-content:space-between; }
+    .card-price { font-weight:800; color:#38bdf8; font-size:0.8rem; }
+    .btn-card { width:100%; padding:6px; border:none; border-radius:6px; font-weight:700; font-size:0.72rem; cursor:pointer; background:#2563eb; color:#fff; }
 
-    /* MODALS & FORMS */
-    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:200; justify-content:center; align-items:center; padding:16px; }
-    .modal-box { background:#0f172a; border:1px solid #1e293b; border-radius:16px; width:100%; max-width:500px; padding:22px; position:relative; max-height:90vh; overflow-y:auto; }
-    .close-btn { position:absolute; top:14px; right:18px; font-size:1.4rem; cursor:pointer; color:#64748b; }
-    .input-field { width:100%; padding:11px; background:#080c14; border:1px solid #334155; border-radius:8px; color:#fff; margin-bottom:12px; outline:none; font-size:0.88rem; }
-    .input-field:focus { border-color:#38bdf8; }
-    .pay-btn { width:100%; padding:14px; background:#10b981; border:none; color:#fff; font-weight:800; border-radius:10px; cursor:pointer; font-size:0.95rem; }
+    /* MODAL Checkout */
+    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:200; justify-content:center; align-items:center; padding:14px; }
+    .modal-box { background:#111827; border:1px solid #1f2937; border-radius:12px; width:100%; max-width:420px; padding:18px; position:relative; }
+    .close-btn { position:absolute; top:10px; right:14px; font-size:1.2rem; cursor:pointer; color:#9ca3af; }
+    .input-field { width:100%; padding:9px; background:#0b0f19; border:1px solid #374151; border-radius:6px; color:#fff; margin-bottom:10px; font-size:0.8rem; outline:none; }
+    .pay-btn { width:100%; padding:11px; background:#10b981; border:none; color:#fff; font-weight:800; border-radius:8px; cursor:pointer; font-size:0.85rem; }
 
-    .payment-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; margin-bottom:14px; }
-    .payment-card { background:#080c14; border:1px solid #334155; padding:10px; border-radius:8px; font-size:0.8rem; font-weight:700; cursor:pointer; text-align:center; }
-    .payment-card.active { border-color:#38bdf8; background:#1e293b; color:#38bdf8; }
-
-    footer { border-top:1px solid #1e293b; background:#0f172a; padding:24px 16px; text-align:center; color:#64748b; font-size:0.78rem; margin-top:30px; }
+    footer { border-top:1px solid #1f2937; background:#111827; padding:16px; text-align:center; color:#6b7280; font-size:0.72rem; margin-top:20px; }
   </style>
-
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 
@@ -136,143 +87,87 @@
   <header>
     <div class="nav-container">
       <a href="#" class="brand">
-        <div class="plp-logo-box"></div>
+        <img src="logo.png" class="brand-logo" alt="PLP Logo" onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png'">
         <span class="brand-title">PLP TOP UP</span>
       </a>
 
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Cari Game / Item..." onkeyup="searchGames()">
+        <input type="text" id="searchInput" placeholder="Cari Game..." onkeyup="searchGames()">
       </div>
 
       <div class="nav-actions">
-        <div id="g_id_onload"
-             data-client_id="707740605267-33mcr13rm6a2esss54r27vija1e0qeqa.apps.googleusercontent.com"
-             data-callback="handleGoogleLogin">
-        </div>
-        <div class="g_id_signin" data-type="standard" data-size="small" data-theme="dark"></div>
-
-        <button id="loginBtn" class="btn btn-primary" onclick="openModal('authModal')">🔑 Login Manual</button>
-        <div id="userBadge" class="user-badge">👤 <span id="userName">User</span></div>
-        <button class="btn" onclick="openModal('cartModal')">🛒 Cart (<span id="cartCount">0</span>)</button>
+        <button class="btn btn-primary" onclick="openModal('authModal')">Login</button>
+        <button class="btn" onclick="openModal('cartModal')">🛒 (<span id="cartCount">0</span>)</button>
       </div>
     </div>
 
     <div class="cat-bar">
-      <button class="cat-btn active" onclick="filterCat('All')">Semua Game</button>
-      <button class="cat-btn" onclick="filterCat('Mobile')">Mobile Games</button>
-      <button class="cat-btn" onclick="filterCat('PC')">PC Games</button>
-      <button class="cat-btn" onclick="openModal('libraryModal')">📚 My Library</button>
-      <button class="cat-btn" onclick="openModal('adminModal')">🔐 Admin Panel</button>
+      <button class="cat-btn active" onclick="filterCat('All')">Semua</button>
+      <button class="cat-btn" onclick="filterCat('Mobile')">Mobile</button>
+      <button class="cat-btn" onclick="filterCat('PC')">PC</button>
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
   <div class="container">
     <div class="hero">
-      <div class="hero-img-box">⚡</div>
+      <img src="logo.png" class="hero-img" alt="PLP Project Logo" onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png'">
       <div class="hero-text">
-        <span class="hero-badge">OFFICIAL DIGITAL STORE</span>
-        <h1>PLP TOP UP - Game Store & Voucher</h1>
-        <p>Proses kilat 1-3 detik, terhubung langsung ke Payment Gateway Duitku & Sistem VIP Reseller.</p>
+        <span class="hero-badge">OFFICIAL STORE</span>
+        <h1>PLP TOP UP Store</h1>
+        <p>Top Up Game Instant & Murah 24 Jam.</p>
       </div>
     </div>
 
     <div class="section-title">
-      <span>🔥 Katalog Produk & Top Up Game</span>
-      <button class="btn" onclick="openModal('redeemModal')">🎁 Redeem Code</button>
+      <span>🔥 Katalog Top Up</span>
     </div>
     
     <div class="game-grid" id="gameGrid"></div>
   </div>
 
-  <!-- MODAL AUTHENTICATION -->
+  <!-- MODAL LOGIN -->
   <div id="authModal" class="modal">
     <div class="modal-box">
       <span class="close-btn" onclick="closeModal('authModal')">&times;</span>
-      <h3>🔑 Login Akun PLP TOP UP</h3>
-      <p style="font-size:0.8rem; color:#94a3b8; margin:8px 0 14px 0;">Masukkan Email Google atau Username Anda untuk mengaktifkan sesi transaksi.</p>
-      <input type="email" class="input-field" id="authEmail" placeholder="Alamat Email Anda (misal: afiki@gmail.com)">
-      <button class="pay-btn" onclick="handleInstantLogin()">Login & Mulai Transaksi</button>
+      <h4 style="margin-bottom:10px;">🔑 Login Akun PLP</h4>
+      <input type="email" class="input-field" id="authEmail" placeholder="Masukkan Email Anda">
+      <button class="pay-btn" onclick="handleInstantLogin()">Login Sesi</button>
     </div>
   </div>
 
-  <!-- MODAL CART & CHECKOUT -->
+  <!-- MODAL CART -->
   <div id="cartModal" class="modal">
     <div class="modal-box">
       <span class="close-btn" onclick="closeModal('cartModal')">&times;</span>
-      <h3>🛒 Keranjang & Checkout Transaksi</h3>
-      <div id="cartItems" style="margin:12px 0;"></div>
-      
-      <input type="text" class="input-field" id="targetUserId" placeholder="User ID Game (contoh: 1775272376)">
-      <input type="text" class="input-field" id="targetZoneId" placeholder="Zone / Server ID (contoh: 57096)">
-
-      <label style="font-size:0.8rem; font-weight:700; color:#38bdf8; display:block; margin-bottom:6px;">Pilih Metode Pembayaran:</label>
-      <div class="payment-grid">
-        <div class="payment-card active" onclick="selectPayment('NQ', this)">QRIS (All E-Wallet)</div>
-        <div class="payment-card" onclick="selectPayment('OV', this)">OVO / GoPay</div>
-        <div class="payment-card" onclick="selectPayment('VA', this)">Virtual Account Bank</div>
-        <div class="payment-card" onclick="selectPayment('FT', this)">Alfamart / Indomaret</div>
-      </div>
-
-      <div style="display:flex; justify-content:space-between; font-weight:800; margin:14px 0;">
-        <span>Total Pembayaran:</span>
+      <h4 style="margin-bottom:10px;">🛒 Checkout Top Up</h4>
+      <div id="cartItems" style="margin-bottom:10px; font-size:0.8rem;"></div>
+      <input type="text" class="input-field" id="targetUserId" placeholder="User ID Game (cth: 12345678)">
+      <input type="text" class="input-field" id="targetZoneId" placeholder="Server ID (cth: 1234)">
+      <div style="display:flex; justify-content:space-between; font-weight:800; font-size:0.85rem; margin-bottom:10px;">
+        <span>Total:</span>
         <span id="cartTotal" style="color:#38bdf8;">Rp 0</span>
       </div>
-      <button class="pay-btn" onclick="processCheckout()">Proses Pembayaran 🚀</button>
-    </div>
-  </div>
-
-  <!-- MODAL LIBRARY -->
-  <div id="libraryModal" class="modal">
-    <div class="modal-box">
-      <span class="close-btn" onclick="closeModal('libraryModal')">&times;</span>
-      <h3>📚 My Game Library & History</h3>
-      <div id="libraryList" style="margin-top:10px; font-size:0.85rem; color:#94a3b8;">Belum ada riwayat transaksi lunas.</div>
-    </div>
-  </div>
-
-  <!-- MODAL REDEEM -->
-  <div id="redeemModal" class="modal">
-    <div class="modal-box">
-      <span class="close-btn" onclick="closeModal('redeemModal')">&times;</span>
-      <h3>🎁 Redeem Voucher Code</h3>
-      <input type="text" class="input-field" id="redeemCode" placeholder="Masukkan Kode Voucher (cth: PLP-2026)" style="margin-top:12px;">
-      <button class="pay-btn" onclick="claimRedeem()">Klaim Voucher</button>
-    </div>
-  </div>
-
-  <!-- MODAL ADMIN -->
-  <div id="adminModal" class="modal">
-    <div class="modal-box">
-      <span class="close-btn" onclick="closeModal('adminModal')">&times;</span>
-      <h3>🔐 Admin Panel Dashboard</h3>
-      <p style="font-size:0.8rem; color:#94a3b8; margin-top:8px;">Status System: Duitku Gateway & VIP Reseller Connected.</p>
+      <button class="pay-btn" onclick="processCheckout()">Bayar Sekarang 🚀</button>
     </div>
   </div>
 
   <footer>
-    <p>&copy; 2026 PLP TOP UP. Platform Resmi Top Up Game & Digital Store.</p>
+    <p>&copy; 2026 PLP TOP UP Store.</p>
   </footer>
 
   <script>
-    // KATALOG POSTER SYSTEM VECTOR (100% BEBAS BROKEN IMAGE)
+    // KATALOG PRODUK DENGAN DIREKTORI WIKIMEDIA UNTUK POSTER STABLE
     const catalog = [
-      { id: 'ML86', title: 'Mobile Legends 86 Diamond', type: 'Mobile', price: 20000, gameName: 'MOBILE LEGENDS', icon: '⚔️', bg: 'linear-gradient(135deg, #1e3a8a, #2563eb)' },
-      { id: 'ML172', title: 'Mobile Legends 172 Diamond', type: 'Mobile', price: 40000, gameName: 'MOBILE LEGENDS', icon: '⚔️', bg: 'linear-gradient(135deg, #1e3a8a, #2563eb)' },
-      { id: 'ML257', title: 'Mobile Legends 257 Diamond', type: 'Mobile', price: 60000, gameName: 'MOBILE LEGENDS', icon: '⚔️', bg: 'linear-gradient(135deg, #1e3a8a, #2563eb)' },
-      { id: 'FF140', title: 'Free Fire 140 Diamond', type: 'Mobile', price: 19000, gameName: 'FREE FIRE', icon: '🔥', bg: 'linear-gradient(135deg, #7c2d12, #ea580c)' },
-      { id: 'FF355', title: 'Free Fire 355 Diamond', type: 'Mobile', price: 48000, gameName: 'FREE FIRE', icon: '🔥', bg: 'linear-gradient(135deg, #7c2d12, #ea580c)' },
-      { id: 'PUBG60', title: 'PUBG Mobile 60 UC', type: 'Mobile', price: 15000, gameName: 'PUBG MOBILE', icon: '🪂', bg: 'linear-gradient(135deg, #713f12, #eab308)' },
-      { id: 'PUBG325', title: 'PUBG Mobile 325 UC', type: 'Mobile', price: 75000, gameName: 'PUBG MOBILE', icon: '🪂', bg: 'linear-gradient(135deg, #713f12, #eab308)' },
-      { id: 'CP2077', title: 'Cyberpunk 2077 Digital', type: 'PC', price: 450000, gameName: 'CYBERPUNK 2077', icon: '🤖', bg: 'linear-gradient(135deg, #831843, #ec4899)' },
-      { id: 'RE4', title: 'Resident Evil 4 Remake', type: 'PC', price: 380000, gameName: 'RESIDENT EVIL 4', icon: '☣️', bg: 'linear-gradient(135deg, #450a0a, #dc2626)' },
-      { id: 'GTA5', title: 'Grand Theft Auto V Premium', type: 'PC', price: 200000, gameName: 'GTA V PREMIUM', icon: '🚗', bg: 'linear-gradient(135deg, #14532d, #22c55e)' }
+      { id: 'ML86', title: 'Mobile Legends 86 Diamond', type: 'Mobile', price: 20000, img: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Mobile_Legends_Bang_Bang_logo.png/500px-Mobile_Legends_Bang_Bang_logo.png' },
+      { id: 'ML172', title: 'Mobile Legends 172 Diamond', type: 'Mobile', price: 40000, img: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Mobile_Legends_Bang_Bang_logo.png/500px-Mobile_Legends_Bang_Bang_logo.png' },
+      { id: 'FF140', title: 'Free Fire 140 Diamond', type: 'Mobile', price: 19000, img: 'https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Garena_Free_Fire_logo.png/500px-Garena_Free_Fire_logo.png' },
+      { id: 'PUBG60', title: 'PUBG Mobile 60 UC', type: 'Mobile', price: 15000, img: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/PUBG_Mobile_logo.png/500px-PUBG_Mobile_logo.png' },
+      { id: 'CP2077', title: 'Cyberpunk 2077', type: 'PC', price: 450000, img: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg' },
+      { id: 'RE4', title: 'Resident Evil 4', type: 'PC', price: 380000, img: 'https://cdn.cloudflare.steamstatic.com/steam/apps/2050650/header.jpg' }
     ];
 
     let currentUser = null;
     let cart = [];
-    let library = [];
-    let selectedMethod = 'NQ';
 
     function renderCatalog(items) {
       const grid = document.getElementById('gameGrid');
@@ -280,66 +175,33 @@
       items.forEach(item => {
         grid.innerHTML += `
           <div class="game-card">
-            <div class="poster-box" style="background:${item.bg}">
-              <span class="poster-tag">${item.type}</span>
-              <div class="poster-icon">${item.icon}</div>
-              <div class="poster-title">${item.gameName}</div>
-            </div>
+            <img src="${item.img}" class="poster-img" alt="${item.title}">
             <div class="card-body">
               <div class="card-title" title="${item.title}">${item.title}</div>
               <div class="card-meta">
-                <span>Official Item</span>
+                <span>Resmi</span>
                 <span class="card-price">Rp ${item.price.toLocaleString('id-ID')}</span>
               </div>
-              <button class="btn-card" onclick="addToCart('${item.title}', ${item.price}, '${item.id}')">+ Keranjang</button>
+              <button class="btn-card" onclick="addToCart('${item.title}', ${item.price}, '${item.id}')">+ Beli</button>
             </div>
           </div>
         `;
       });
     }
 
-    function handleGoogleLogin(response) {
-      try {
-        const token = response.credential;
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
-        const payload = JSON.parse(jsonPayload);
-        
-        currentUser = payload.email;
-        setUserLoggedIn(payload.given_name || payload.name || payload.email);
-      } catch(e) {
-        alert("Gagal memproses Google Login.");
-      }
-    }
-
     function handleInstantLogin() {
       const email = document.getElementById('authEmail').value.trim();
-      if (!email) return alert('Harap masukkan Email / Username!');
-      
+      if (!email) return alert('Masukkan Email!');
       currentUser = email;
-      setUserLoggedIn(email.split('@')[0]);
       closeModal('authModal');
-    }
-
-    function setUserLoggedIn(name) {
-      document.getElementById('userName').innerText = name;
-      document.getElementById('userBadge').style.display = 'inline-block';
-      document.getElementById('loginBtn').style.display = 'none';
-      if(document.querySelector('.g_id_signin')) document.querySelector('.g_id_signin').style.display = 'none';
-      alert(`Berhasil Login Akun: ${name}`);
+      alert('Berhasil Login!');
     }
 
     function addToCart(title, price, code) {
-      if (!currentUser) {
-        alert('Anda WAJIB LOGIN terlebih dahulu sebelum menambah item!');
-        openModal('authModal');
-        return;
-      }
+      if (!currentUser) return openModal('authModal');
       cart.push({ title, price, code });
       document.getElementById('cartCount').innerText = cart.length;
       updateCartUI();
-      alert(`${title} ditambahkan ke keranjang belanja!`);
     }
 
     function updateCartUI() {
@@ -348,58 +210,17 @@
       let total = 0;
       cart.forEach(i => {
         total += i.price;
-        list.innerHTML += `<div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #1e293b; font-size:0.8rem;"><span>${i.title}</span><span>Rp ${i.price.toLocaleString('id-ID')}</span></div>`;
+        list.innerHTML += `<div style="display:flex; justify-content:space-between; padding:4px 0;"><span>${i.title}</span><span>Rp ${i.price.toLocaleString('id-ID')}</span></div>`;
       });
       document.getElementById('cartTotal').innerText = `Rp ${total.toLocaleString('id-ID')}`;
     }
 
-    function selectPayment(method, el) {
-      selectedMethod = method;
-      document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('active'));
-      el.classList.add('active');
-    }
-
-    async function processCheckout() {
-      if (!currentUser) return openModal('authModal');
-      if (cart.length === 0) return alert('Keranjang masih kosong!');
-
-      const userId = document.getElementById('targetUserId').value.trim();
-      const zoneId = document.getElementById('targetZoneId').value.trim();
-      const total = cart.reduce((sum, i) => sum + i.price, 0);
-
-      const btn = document.querySelector('#cartModal .pay-btn');
-      btn.innerText = 'Memproses Pesanan Pembayaran...';
-      btn.disabled = true;
-
-      try {
-        const res = await fetch('/api/index', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ userId, zoneId, productCode: cart[0].code, price: total, paymentMethod: selectedMethod })
-        });
-        const data = await res.json();
-        if (data.success && data.checkoutUrl) {
-          library.push(...cart);
-          window.location.href = data.checkoutUrl;
-        } else {
-          alert('Gagal memproses transaksi: ' + (data.message || 'Error API'));
-        }
-      } catch (e) {
-        alert('Gagal terhubung ke Backend Server API.');
-      } finally {
-        btn.innerText = 'Proses Pembayaran 🚀';
-        btn.disabled = false;
-      }
-    }
-
-    function claimRedeem() {
-      const code = document.getElementById('redeemCode').value.trim();
-      if (code === 'PLP-2026') {
-        alert('Voucher berhasil diklaim!');
-        closeModal('redeemModal');
-      } else {
-        alert('Kode voucher tidak berlaku.');
-      }
+    function processCheckout() {
+      if (cart.length === 0) return alert('Keranjang kosong!');
+      alert('Pesanan berhasil dibuat!');
+      cart = [];
+      document.getElementById('cartCount').innerText = '0';
+      closeModal('cartModal');
     }
 
     function filterCat(cat) {
