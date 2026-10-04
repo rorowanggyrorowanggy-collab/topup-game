@@ -39,7 +39,8 @@
 
     /* HERO BANNER */
     .hero { 
-      background: linear-gradient(135deg, #0f172a, #1e1b4b); 
+      background: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.95)), 
+                  url('https://i.imgur.com/8QG3XpX.jpg') center/cover; 
       border-radius:16px; 
       padding:24px; 
       border:1px solid #1e293b; 
@@ -48,7 +49,7 @@
       align-items: center;
       gap: 20px;
     }
-    .hero-img { width: 80px; height: 80px; border-radius: 16px; border: 2px solid #38bdf8; object-fit: cover; }
+    .hero-img { width: 80px; height: 80px; border-radius: 16px; border: 2px solid #38bdf8; object-fit: cover; box-shadow:0 0 15px rgba(56, 189, 248, 0.3); }
     .hero-text { flex: 1; }
     .hero-badge { background:#2563eb; color:#fff; padding:4px 10px; border-radius:20px; font-size:0.75rem; font-weight:800; display:inline-block; margin-bottom:8px; }
     .hero h1 { font-size:1.5rem; font-weight:800; margin-bottom:6px; color:#fff; }
@@ -60,22 +61,15 @@
     .game-card { background:#0f172a; border:1px solid #1e293b; border-radius:14px; overflow:hidden; transition:all 0.2s; cursor:pointer; }
     .game-card:hover { transform:translateY(-4px); border-color:#38bdf8; box-shadow:0 8px 20px rgba(56, 189, 248, 0.2); }
     
-    /* POSTER BANNER DESAIN ASLI */
-    .poster-box { 
-      height: 120px; 
+    /* POSTER GAMBAR ASLI GAME */
+    .poster-img { 
+      height: 130px; 
       width: 100%; 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-      justify-content: center; 
-      font-weight: 800; 
-      color: #fff; 
-      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-      position: relative;
+      object-fit: cover;
+      display: block;
+      background: #1e293b;
+      border-bottom: 1px solid #1e293b;
     }
-    .poster-box .badge-tag { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.6); padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; color: #38bdf8; border: 1px solid #38bdf8; }
-    .poster-box .icon-lg { font-size: 2.2rem; margin-bottom: 4px; }
-    .poster-box .game-name { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
 
     .card-body { padding:12px; }
     .card-title { font-weight:700; font-size:0.85rem; margin-bottom:4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -107,17 +101,8 @@
   <header>
     <div class="nav-container">
       <a href="#" class="brand">
-        <!-- ICON LOGO PLP PROJECT (PIKACHU SVG STABLE) -->
-        <svg class="brand-logo" viewBox="0 0 100 100" style="background:#0284c7; padding:4px;">
-          <circle cx="50" cy="50" r="45" fill="#0284c7" />
-          <path d="M 30 40 L 20 15 L 40 30 Z" fill="#facc15" />
-          <path d="M 70 40 L 80 15 L 60 30 Z" fill="#facc15" />
-          <circle cx="50" cy="55" r="25" fill="#facc15" />
-          <circle cx="40" cy="50" r="3" fill="#000" />
-          <circle cx="60" cy="50" r="3" fill="#000" />
-          <circle cx="33" cy="60" r="4" fill="#ef4444" />
-          <circle cx="67" cy="60" r="4" fill="#ef4444" />
-        </svg>
+        <!-- LOGO LOGO PIKACHU PLP PROJECT milikmu -->
+        <img src="https://i.ibb.co/L8r4vS5/1000411506.png" class="brand-logo" alt="PLP PROJECT Pikachu Logo" onerror="this.src='https://via.placeholder.com/42/0284c7/ffffff?text=PLP'">
         <span class="brand-title">PLP TOP UP</span>
       </a>
 
@@ -151,16 +136,7 @@
   <!-- MAIN CONTENT -->
   <div class="container">
     <div class="hero">
-      <svg class="hero-img" viewBox="0 0 100 100" style="background:#0f172a;">
-        <circle cx="50" cy="50" r="45" fill="#0284c7" />
-        <path d="M 30 40 L 20 15 L 40 30 Z" fill="#facc15" />
-        <path d="M 70 40 L 80 15 L 60 30 Z" fill="#facc15" />
-        <circle cx="50" cy="55" r="25" fill="#facc15" />
-        <circle cx="40" cy="50" r="3" fill="#000" />
-        <circle cx="60" cy="50" r="3" fill="#000" />
-        <circle cx="33" cy="60" r="4" fill="#ef4444" />
-        <circle cx="67" cy="60" r="4" fill="#ef4444" />
-      </svg>
+      <img src="https://i.ibb.co/L8r4vS5/1000411506.png" class="hero-img" alt="PLP Project Pikachu Logo" onerror="this.src='https://via.placeholder.com/80/0284c7/ffffff?text=PLP'">
       <div class="hero-text">
         <span class="hero-badge">OFFICIAL DIGITAL STORE</span>
         <h1>PLP TOP UP - Game Store & Voucher</h1>
@@ -246,19 +222,19 @@
   </footer>
 
   <script>
-    // KATALOG PRODUK DENGAN DESAIN POSTER KHUSUS SESUAI MASKOT & LOGO GAME
+    // KATALOG DENGAN LINK POSTER OFFICIAL GAME ASLI HIGH RESOLUTION (PROD READY)
     const catalog = [
-      { id: 'ML86', title: 'Mobile Legends 86 Diamond', type: 'Mobile', price: 20000, gameName: 'MOBILE LEGENDS', icon: '⚔️', bg: 'linear-gradient(135deg, #1e3a8a, #3b82f6)' },
-      { id: 'ML172', title: 'Mobile Legends 172 Diamond', type: 'Mobile', price: 40000, gameName: 'MOBILE LEGENDS', icon: '⚔️', bg: 'linear-gradient(135deg, #1e3a8a, #3b82f6)' },
-      { id: 'ML257', title: 'Mobile Legends 257 Diamond', type: 'Mobile', price: 60000, gameName: 'MOBILE LEGENDS', icon: '⚔️', bg: 'linear-gradient(135deg, #1e3a8a, #3b82f6)' },
-      { id: 'FF140', title: 'Free Fire 140 Diamond', type: 'Mobile', price: 19000, gameName: 'FREE FIRE', icon: '🔥', bg: 'linear-gradient(135deg, #7c2d12, #ea580c)' },
-      { id: 'FF355', title: 'Free Fire 355 Diamond', type: 'Mobile', price: 48000, gameName: 'FREE FIRE', icon: '🔥', bg: 'linear-gradient(135deg, #7c2d12, #ea580c)' },
-      { id: 'PUBG60', title: 'PUBG Mobile 60 UC', type: 'Mobile', price: 15000, gameName: 'PUBG MOBILE', icon: '🪂', bg: 'linear-gradient(135deg, #713f12, #eab308)' },
-      { id: 'PUBG325', title: 'PUBG Mobile 325 UC', type: 'Mobile', price: 75000, gameName: 'PUBG MOBILE', icon: '🪂', bg: 'linear-gradient(135deg, #713f12, #eab308)' },
-      { id: 'CP2077', title: 'Cyberpunk 2077 Digital', type: 'PC', price: 450000, gameName: 'CYBERPUNK 2077', icon: '🤖', bg: 'linear-gradient(135deg, #831843, #ec4899)' },
-      { id: 'RE4', title: 'Resident Evil 4 Remake', type: 'PC', price: 380000, gameName: 'RESIDENT EVIL 4', icon: '☣️', bg: 'linear-gradient(135deg, #450a0a, #dc2626)' },
-      { id: 'GTA5', title: 'Grand Theft Auto V Premium', type: 'PC', price: 200000, gameName: 'GTA V PREMIUM', icon: '🚗', bg: 'linear-gradient(135deg, #14532d, #22c55e)' },
-      { id: 'STEAM100', title: 'Steam Wallet IDR 100K', type: 'Voucher', price: 105000, gameName: 'STEAM WALLET', icon: '🎟️', bg: 'linear-gradient(135deg, #0f172a, #475569)' }
+      { id: 'ML86', title: 'Mobile Legends 86 Diamond', type: 'Mobile', price: 20000, img: 'https://cdn.codashop.com/S/content/common/images/mgs/mobilelegends_640x241.jpg' },
+      { id: 'ML172', title: 'Mobile Legends 172 Diamond', type: 'Mobile', price: 40000, img: 'https://cdn.codashop.com/S/content/common/images/mgs/mobilelegends_640x241.jpg' },
+      { id: 'ML257', title: 'Mobile Legends 257 Diamond', type: 'Mobile', price: 60000, img: 'https://cdn.codashop.com/S/content/common/images/mgs/mobilelegends_640x241.jpg' },
+      { id: 'FF140', title: 'Free Fire 140 Diamond', type: 'Mobile', price: 19000, img: 'https://cdn.codashop.com/S/content/common/images/mgs/freefire_640x241.png' },
+      { id: 'FF355', title: 'Free Fire 355 Diamond', type: 'Mobile', price: 48000, img: 'https://cdn.codashop.com/S/content/common/images/mgs/freefire_640x241.png' },
+      { id: 'PUBG60', title: 'PUBG Mobile 60 UC', type: 'Mobile', price: 15000, img: 'https://cdn.codashop.com/S/content/common/images/mgs/pubg_640x241.jpg' },
+      { id: 'PUBG325', title: 'PUBG Mobile 325 UC', type: 'Mobile', price: 75000, img: 'https://cdn.codashop.com/S/content/common/images/mgs/pubg_640x241.jpg' },
+      { id: 'CP2077', title: 'Cyberpunk 2077 Digital', type: 'PC', price: 450000, img: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg' },
+      { id: 'RE4', title: 'Resident Evil 4 Remake', type: 'PC', price: 380000, img: 'https://cdn.cloudflare.steamstatic.com/steam/apps/2050650/header.jpg' },
+      { id: 'GTA5', title: 'Grand Theft Auto V Premium', type: 'PC', price: 200000, img: 'https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg' },
+      { id: 'STEAM100', title: 'Steam Wallet IDR 100K', type: 'Voucher', price: 105000, img: 'https://cdn.codashop.com/S/content/common/images/mgs/steam_640x241.jpg' }
     ];
 
     let currentUser = null;
@@ -272,11 +248,7 @@
       items.forEach(item => {
         grid.innerHTML += `
           <div class="game-card">
-            <div class="poster-box" style="background: ${item.bg}">
-              <span class="badge-tag">${item.type}</span>
-              <div class="icon-lg">${item.icon}</div>
-              <div class="game-name">${item.gameName}</div>
-            </div>
+            <img src="${item.img}" class="poster-img" alt="${item.title}" onerror="this.src='https://via.placeholder.com/400x200/1e293b/ffffff?text=${encodeURIComponent(item.title)}'">
             <div class="card-body">
               <div class="card-title" title="${item.title}">${item.title}</div>
               <div class="card-meta">
