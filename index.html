@@ -3,41 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Top Up Game Otomatis</title>
+  <title>Toko Top Up Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h2>Top Up Mobile Legends</h2>
+    <h1>Toko Top Up Game</h1>
 
-    <!-- Form Data Akun -->
+    <!-- Pilihan Game -->
+    <div class="game-selector">
+      <button class="game-btn active" onclick="switchGame('mlbb')">Mobile Legends</button>
+      <button class="game-btn" onclick="switchGame('ff')">Free Fire</button>
+      <button class="game-btn" onclick="switchGame('pubg')">PUBG Mobile</button>
+    </div>
+
+    <!-- Form Input Account -->
     <div class="section">
       <h3>1. Masukkan Data Akun</h3>
       <div class="input-group">
-        <input type="text" id="userId" placeholder="User ID" required>
-        <input type="text" id="zoneId" placeholder="Zone ID" required>
+        <input type="text" id="userId" placeholder="User ID">
+        <input type="text" id="zoneId" placeholder="Zone / Server ID (Jika Ada)">
       </div>
     </div>
 
-    <!-- Pilihan Nominal -->
+    <!-- Pilihan Nominal Product -->
     <div class="section">
-      <h3>2. Pilih Nominal Diamond</h3>
-      <div class="grid-items">
-        <button class="item-btn" onclick="selectItem('ML86', 20000)">86 Diamond - Rp 20.000</button>
-        <button class="item-btn" onclick="selectItem('ML172', 40000)">172 Diamond - Rp 40.000</button>
-        <button class="item-btn" onclick="selectItem('ML257', 60000)">257 Diamond - Rp 60.000</button>
+      <h3>2. Pilih Nominal</h3>
+      <div class="nominal-grid" id="nominalGrid">
+        <!-- Pilihan produk diisi otomatis oleh script.js -->
       </div>
     </div>
 
-    <!-- Pilihan Pembayaran -->
+    <!-- Metode Pembayaran -->
     <div class="section">
       <h3>3. Pilih Pembayaran</h3>
       <select id="paymentMethod">
-        <option value="QRIS">QRIS (Semua E-Wallet & Bank)</option>
+        <option value="NQ">QRIS (Semua E-Wallet & Bank)</option>
       </select>
     </div>
 
-    <!-- Tombol Bayar -->
     <button class="pay-btn" onclick="processPayment()">Bayar Sekarang</button>
   </div>
 
