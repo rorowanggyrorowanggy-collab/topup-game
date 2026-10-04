@@ -3,47 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PLP TOP UP & GAME STORE - Platform Game Raksasa</title>
+  <title>PLP TOP UP - Store & Game Distribution Platform</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
 
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans', sans-serif; }
     body { background:#090d16; color:#f1f5f9; min-height:100vh; padding-bottom:60px; }
 
-    /* HEADER & NAVBAR */
     header { background:#111827; border-bottom:1px solid #1e293b; position:sticky; top:0; z-index:100; }
     .nav-container { max-width:1200px; margin:0 auto; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
     
     .brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
     .brand-logo { width:36px; height:36px; border-radius:8px; object-fit:cover; }
-    .brand-title { font-size:1.1rem; font-weight:800; color:#38bdf8; letter-spacing:0.5px; }
+    .brand-title { font-size:1.1rem; font-weight:800; color:#38bdf8; }
 
     .search-box { flex:1; min-width:180px; max-width:350px; }
     .search-box input { width:100%; padding:8px 12px; background:#090d16; border:1px solid #334155; border-radius:8px; color:#fff; outline:none; font-size:0.8rem; }
-    .search-box input:focus { border-color:#38bdf8; }
 
     .nav-actions { display:flex; gap:6px; align-items:center; }
-    .btn { background:#1e293b; border:1px solid #334155; color:#fff; padding:7px 11px; border-radius:8px; cursor:pointer; font-weight:700; font-size:0.75rem; white-space:nowrap; }
+    .btn { background:#1e293b; border:1px solid #334155; color:#fff; padding:7px 11px; border-radius:8px; cursor:pointer; font-weight:700; font-size:0.75rem; }
     .btn-primary { background:#2563eb; border:none; }
-    .btn-primary:hover { background:#1d4ed8; }
 
     .user-profile-badge { display:none; background:#0284c7; padding:6px 12px; border-radius:20px; font-size:0.75rem; font-weight:700; color:#fff; }
 
-    /* CATEGORIES & NAVIGATION */
     .cat-bar { max-width:1200px; margin:0 auto; padding:0 16px 10px 16px; display:flex; gap:6px; overflow-x:auto; }
     .cat-btn { background:transparent; border:none; color:#94a3b8; padding:6px 12px; cursor:pointer; font-weight:600; border-radius:6px; white-space:nowrap; font-size:0.8rem; }
     .cat-btn.active, .cat-btn:hover { background:#1e293b; color:#38bdf8; }
 
-    /* MAIN CONTAINER */
     .container { max-width:1200px; margin:16px auto; padding:0 16px; }
 
-    /* HERO BANNER */
     .hero { background:linear-gradient(135deg, #1e1b4b, #0f172a); border-radius:14px; padding:24px 20px; border:1px solid #1e293b; margin-bottom:20px; }
     .hero-badge { background:#2563eb; color:#fff; padding:3px 8px; border-radius:20px; font-size:0.7rem; font-weight:800; display:inline-block; margin-bottom:8px; }
     .hero h1 { font-size:1.5rem; font-weight:800; margin-bottom:6px; }
     .hero p { color:#94a3b8; max-width:500px; font-size:0.85rem; margin-bottom:14px; }
 
-    /* GRID KATALOG GAME */
     .section-title { font-size:1.1rem; font-weight:800; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center; }
     .game-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:12px; margin-bottom:28px; }
     .game-card { background:#111827; border:1px solid #1e293b; border-radius:12px; overflow:hidden; transition:all 0.2s; cursor:pointer; }
@@ -55,23 +48,19 @@
     .card-price { font-weight:800; color:#38bdf8; font-size:0.85rem; }
     .btn-card { width:100%; padding:7px; border:none; border-radius:6px; font-weight:700; font-size:0.75rem; cursor:pointer; background:#2563eb; color:#fff; }
 
-    /* MODALS */
     .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:200; justify-content:center; align-items:center; padding:16px; }
     .modal-box { background:#111827; border:1px solid #1e293b; border-radius:14px; width:100%; max-width:480px; padding:20px; position:relative; max-height:90vh; overflow-y:auto; }
     .close-btn { position:absolute; top:12px; right:16px; font-size:1.3rem; cursor:pointer; color:#64748b; }
     .input-field { width:100%; padding:10px; background:#090d16; border:1px solid #334155; border-radius:8px; color:#fff; margin-bottom:10px; outline:none; font-size:0.85rem; }
     .pay-btn { width:100%; padding:12px; background:#10b981; border:none; color:#fff; font-weight:800; border-radius:8px; cursor:pointer; font-size:0.9rem; }
 
-    /* FOOTER */
     footer { border-top:1px solid #1e293b; background:#111827; padding:24px 16px; text-align:center; color:#64748b; font-size:0.75rem; margin-top:30px; }
   </style>
 
-  <!-- Google One Tap / Sign-In SDK -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 
-  <!-- HEADER NAVBAR -->
   <header>
     <div class="nav-container">
       <a href="#" class="brand">
@@ -84,7 +73,6 @@
       </div>
 
       <div class="nav-actions">
-        <!-- Google Sign-In Container -->
         <div id="g_id_onload"
              data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
              data-callback="handleGoogleLogin">
@@ -100,18 +88,15 @@
       <button class="cat-btn active" onclick="filterCat('All')">Semua Game</button>
       <button class="cat-btn" onclick="filterCat('Mobile')">Mobile Games</button>
       <button class="cat-btn" onclick="filterCat('PC')">PC Games</button>
-      <button class="cat-btn" onclick="filterCat('Action')">Action</button>
-      <button class="cat-btn" onclick="filterCat('RPG')">RPG</button>
       <button class="cat-btn" onclick="openModal('libraryModal')">📚 My Library</button>
       <button class="cat-btn" onclick="openModal('adminModal')">🔐 Admin Panel</button>
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
   <div class="container">
     <div class="hero">
       <span class="hero-badge">PLP TOP UP OFFICIAL PLATFORM</span>
-      <h1>Platform Game Store & Top Up Otomatis</h1>
+      <h1>Platform Top Up Game Kilat & Otomatis</h1>
       <p>Proses 1-3 detik terhubung langsung ke Duitku QRIS dan Supplier VIP Reseller.</p>
     </div>
 
@@ -123,32 +108,29 @@
     <div class="game-grid" id="gameGrid"></div>
   </div>
 
-  <!-- MODAL CART & CHECKOUT -->
   <div id="cartModal" class="modal">
     <div class="modal-box">
       <span class="close-btn" onclick="closeModal('cartModal')">&times;</span>
-      <h3>🛒 Keranjang Belanja</h3>
+      <h3>🛒 Keranjang & Checkout Transaksi Real</h3>
       <div id="cartItems" style="margin:12px 0;"></div>
       <input type="text" class="input-field" id="targetUserId" placeholder="User ID Game (misal: 1775272376)">
       <input type="text" class="input-field" id="targetZoneId" placeholder="Zone / Server ID (misal: 57096)">
       <div style="display:flex; justify-content:space-between; font-weight:800; margin-bottom:12px;">
-        <span>Total:</span>
+        <span>Total Harga:</span>
         <span id="cartTotal" style="color:#38bdf8;">Rp 0</span>
       </div>
-      <button class="pay-btn" onclick="processCheckout()">Bayar Sekarang (Duitku QRIS) 🚀</button>
+      <button class="pay-btn" onclick="processCheckout()">Bayar Sekarang via Duitku QRIS 🚀</button>
     </div>
   </div>
 
-  <!-- MODAL LIBRARY -->
   <div id="libraryModal" class="modal">
     <div class="modal-box">
       <span class="close-btn" onclick="closeModal('libraryModal')">&times;</span>
       <h3>📚 My Game Library & Entitlements</h3>
-      <div id="libraryList" style="margin-top:10px; font-size:0.85rem; color:#94a3b8;">Belum ada riwayat transaksi.</div>
+      <div id="libraryList" style="margin-top:10px; font-size:0.85rem; color:#94a3b8;">Belum ada riwayat transaksi lunas.</div>
     </div>
   </div>
 
-  <!-- MODAL REDEEM -->
   <div id="redeemModal" class="modal">
     <div class="modal-box">
       <span class="close-btn" onclick="closeModal('redeemModal')">&times;</span>
@@ -158,7 +140,6 @@
     </div>
   </div>
 
-  <!-- MODAL ADMIN -->
   <div id="adminModal" class="modal">
     <div class="modal-box">
       <span class="close-btn" onclick="closeModal('adminModal')">&times;</span>
@@ -173,17 +154,15 @@
 
   <script>
     const catalog = [
-      { id: 'ML86', title: 'Mobile Legends 86 Diamond', type: 'Mobile', category: 'Action', price: 20000, icon: '⚔️' },
-      { id: 'ML172', title: 'Mobile Legends 172 Diamond', type: 'Mobile', category: 'Action', price: 40000, icon: '⚔️' },
-      { id: 'ML257', title: 'Mobile Legends 257 Diamond', type: 'Mobile', category: 'Action', price: 60000, icon: '⚔️' },
-      { id: 'FF140', title: 'Free Fire 140 Diamond', type: 'Mobile', category: 'Action', price: 19000, icon: '🔥' },
-      { id: 'FF355', title: 'Free Fire 355 Diamond', type: 'Mobile', category: 'Action', price: 48000, icon: '🔥' },
-      { id: 'PUBG60', title: 'PUBG Mobile 60 UC', type: 'Mobile', category: 'Action', price: 15000, icon: '🪂' },
-      { id: 'PUBG325', title: 'PUBG Mobile 325 UC', type: 'Mobile', category: 'Action', price: 75000, icon: '🪂' },
-      { id: 'CP2077', title: 'Cyberpunk 2077 Digital Edition', type: 'PC', category: 'RPG', price: 450000, icon: '🎮' },
-      { id: 'RE4', title: 'Resident Evil 4 Remake', type: 'PC', category: 'Action', price: 380000, icon: '☣️' },
-      { id: 'GTA5', title: 'Grand Theft Auto V Premium', type: 'PC', category: 'Action', price: 200000, icon: '🚗' },
-      { id: 'CIV6', title: 'Civilization VI Strategy', type: 'PC', category: 'Strategy', price: 250000, icon: '🏛️' }
+      { id: 'ML86', title: 'Mobile Legends 86 Diamond', type: 'Mobile', price: 20000, icon: '⚔️' },
+      { id: 'ML172', title: 'Mobile Legends 172 Diamond', type: 'Mobile', price: 40000, icon: '⚔️' },
+      { id: 'ML257', title: 'Mobile Legends 257 Diamond', type: 'Mobile', price: 60000, icon: '⚔️' },
+      { id: 'FF140', title: 'Free Fire 140 Diamond', type: 'Mobile', price: 19000, icon: '🔥' },
+      { id: 'FF355', title: 'Free Fire 355 Diamond', type: 'Mobile', price: 48000, icon: '🔥' },
+      { id: 'PUBG60', title: 'PUBG Mobile 60 UC', type: 'Mobile', price: 15000, icon: '🪂' },
+      { id: 'PUBG325', title: 'PUBG Mobile 325 UC', type: 'Mobile', price: 75000, icon: '🪂' },
+      { id: 'CP2077', title: 'Cyberpunk 2077 Digital Edition', type: 'PC', price: 450000, icon: '🎮' },
+      { id: 'RE4', title: 'Resident Evil 4 Remake', type: 'PC', price: 380000, icon: '☣️' }
     ];
 
     let currentUser = null;
@@ -228,7 +207,7 @@
 
     function addToCart(title, price, code) {
       if (!currentUser) {
-        alert('Anda WAJIB LOGIN akun Google terlebih dahulu di tombol login kanan atas!');
+        alert('Harap login Google terlebih dahulu di pojok kanan atas!');
         return;
       }
       cart.push({ title, price, code });
@@ -256,6 +235,10 @@
       const zoneId = document.getElementById('targetZoneId').value.trim();
       const total = cart.reduce((sum, i) => sum + i.price, 0);
 
+      const btn = document.querySelector('.pay-btn');
+      btn.innerText = 'Membuat QRIS Pembayaran Duitku...';
+      btn.disabled = true;
+
       try {
         const res = await fetch('/api/index', {
           method: 'POST',
@@ -263,14 +246,18 @@
           body: JSON.stringify({ userId, zoneId, productCode: cart[0].code, price: total })
         });
         const data = await res.json();
+
         if (data.success && data.checkoutUrl) {
           library.push(...cart);
           window.location.href = data.checkoutUrl;
         } else {
-          alert('Gagal: ' + (data.message || 'Error API'));
+          alert('Gagal membuat pesanan: ' + (data.message || 'Respons API Duitku tidak valid'));
         }
       } catch (e) {
-        alert('Gagal koneksi ke server API.');
+        alert('Gagal terhubung ke Backend Server API.');
+      } finally {
+        btn.innerText = 'Bayar Sekarang via Duitku QRIS 🚀';
+        btn.disabled = false;
       }
     }
 
@@ -288,7 +275,7 @@
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
       event.target.classList.add('active');
       if (cat === 'All') renderCatalog(catalog);
-      else renderCatalog(catalog.filter(c => c.type === cat || c.category === cat));
+      else renderCatalog(catalog.filter(c => c.type === cat));
     }
 
     function searchGames() {
