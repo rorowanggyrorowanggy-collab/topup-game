@@ -1,110 +1,111 @@
-const gameCatalog = [
-  { id: 1, title: 'Cyberpunk 2077', genre: 'RPG', price: 450000, img: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=400' },
-  { id: 2, title: 'Resident Evil 4', genre: 'Horror', price: 380000, img: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=400' },
-  { id: 3, title: 'Civilization VI', genre: 'Strategy', price: 250000, img: 'https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=400' },
-  { id: 4, title: 'Grand Theft Auto V', genre: 'Action', price: 200000, img: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=400' },
-  { id: 5, title: 'The Witcher 3', genre: 'RPG', price: 180000, img: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=400' }
-];
+// DATABASE KATALOG GAME
+const gameProducts = {
+  mlbb: {
+    name: 'Mobile Legends',
+    needsZone: true,
+    items: [
+      { name: '86 Diamond', price: 20000, code: 'ML86' },
+      { name: '172 Diamond', price: 40000, code: 'ML172' },
+      { name: '257 Diamond', price: 60000, code: 'ML257' },
+      { name: '706 Diamond', price: 160000, code: 'ML706' }
+    ]
+  },
+  ff: {
+    name: 'Free Fire',
+    needsZone: false,
+    items: [
+      { name: '140 Diamond', price: 19000, code: 'FF140' },
+      { name: '355 Diamond', price: 48000, code: 'FF355' },
+      { name: '720 Diamond', price: 95000, code: 'FF720' }
+    ]
+  },
+  pubg: {
+    name: 'PUBG Mobile',
+    needsZone: false,
+    items: [
+      { name: '60 UC', price: 15000, code: 'PUBG60' },
+      { name: '325 UC', price: 75000, code: 'PUBG325' }
+    ]
+  }
+};
 
-let cart = [];
-let wishlist = [];
+let currentGame = 'mlbb';
+let selectedNominal = null;
 
-function renderCatalog(games) {
-  const grid = document.getElementById('gameGrid');
+function loadNominals(gameKey) {
+  const grid = document.getElementById('nominalGrid');
+  if (!grid) return;
   grid.innerHTML = '';
-  games.forEach(game => {
+  selectedNominal = null;
+
+  gameProducts[gameKey].items.forEach(item => {
     const card = document.createElement('div');
-    card.className = 'game-card';
+    card.className = 'nominal-card';
     card.innerHTML = `
-      <img src="${game.img}" alt="${game.title}">
-      <div class="card-body">
-        <div class="card-title">${game.title}</div>
-        <div class="card-genre">${game.genre}</div>
-        <div class="card-footer">
-          <span class="card-price">Rp ${game.price.toLocaleString('id-ID')}</span>
-          <button class="add-cart-btn" onclick="addToCart('${game.title}', ${game.price})">+ Cart</button>
-        </div>
-      </div>
+      <div style="font-weight: 700; font-size: 0.85rem;">💎 ${item.name}</div>
+      <div style="color: #38bdf8; font-weight: 800; font-size: 0.8rem; margin-top: 4px;">Rp ${item.price.toLocaleString('id-ID')}</div>
     `;
+    card.onclick = () => {
+      document.querySelectorAll('.nominal-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      selectedNominal = item;
+    };
     grid.appendChild(card);
   });
 }
 
-function filterGenre(genre) {
-  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
-  
-  if (genre === 'All' || genre === 'Deals') {
-    renderCatalog(gameCatalog);
-  } else {
-    const filtered = gameCatalog.filter(g => g.genre === genre);
-    renderCatalog(filtered);
+function selectGame(gameKey, element) {
+  currentGame = gameKey;
+  document.querySelectorAll('.game-card').forEach(c => c.classList.remove('active'));
+  element.classList.add('active');
+
+  const zoneInput = document.getElementById('zoneId');
+  if (zoneInput) {
+    zoneInput.style.display = gameProducts[gameKey].needsZone ? 'block' : 'none';
   }
+
+  loadNominals(gameKey);
 }
 
-function filterGames() {
-  const query = document.getElementById('searchInput').value.toLowerCase();
-  const filtered = gameCatalog.filter(g => g.title.toLowerCase().includes(query));
-  renderCatalog(filtered);
-}
+// PROSES CHECKOUT INTEGRASI FULL BACKEND
+async function processPayment() {
+  const userId = document.getElementById('userId').value;
+  const zoneId = document.getElementById('zoneId')?.value || '';
 
-function addToCart(title, price) {
-  cart.push({ title, price });
-  updateCartUI();
-  alert(`${title} added to shopping cart!`);
-}
-
-function updateCartUI() {
-  document.getElementById('cartCount').innerText = cart.length;
-  const list = document.getElementById('cartItems');
-  list.innerHTML = '';
-  let total = 0;
-  cart.forEach((item, index) => {
-    total += item.price;
-    list.innerHTML += `
-      <div class="cart-item">
-        <span>${item.title}</span>
-        <span>Rp ${item.price.toLocaleString('id-ID')}</span>
-      </div>
-    `;
-  });
-  document.getElementById('cartTotal').innerText = `Rp ${total.toLocaleString('id-ID')}`;
-}
-
-async function processCheckout() {
-  if (cart.length === 0) {
-    alert('Cart is empty!');
+  if (!userId || !selectedNominal) {
+    alert('Harap isi User ID dan pilih nominal item!');
     return;
   }
 
-  const totalAmount = cart.reduce((sum, i) => sum + i.price, 0);
+  const btn = document.querySelector('.pay-btn');
+  btn.innerText = 'Memproses Pesanan Ke Gateway...';
+  btn.disabled = true;
 
   try {
-    const response = await fetch('/api/create-payment', {
+    const response = await fetch('/api/checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        userId: 'USER-' + Date.now(),
-        zoneId: '',
-        productCode: 'GAME_BUNDLE',
-        price: totalAmount,
-        paymentMethod: 'NQ'
+        userId,
+        zoneId,
+        productCode: selectedNominal.code,
+        price: selectedNominal.price
       })
     });
 
     const result = await response.json();
-    if (result.success && result.data.checkout_url) {
-      window.location.href = result.data.checkout_url;
+
+    if (result.success && result.checkoutUrl) {
+      window.location.href = result.checkoutUrl;
     } else {
-      alert('Checkout Failed: ' + (result.message || 'Payment Gateway Error'));
+      alert('Gagal memproses transaksi: ' + (result.message || 'Terjadi kesalahan sistem'));
     }
-  } catch (err) {
-    alert('Error connecting to backend API.');
+  } catch (error) {
+    alert('Gagal terhubung ke Backend Server API.');
+  } finally {
+    btn.innerText = 'Beli Sekarang 🚀';
+    btn.disabled = false;
   }
 }
 
-function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-function handleLogin(e) { e.preventDefault(); alert('Authentication Successful! 2FA Verified.'); closeModal('authModal'); }
-
-document.addEventListener('DOMContentLoaded', () => renderCatalog(gameCatalog));
+document.addEventListener('DOMContentLoaded', () => loadNominals('mlbb'));
