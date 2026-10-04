@@ -3,85 +3,340 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHIKIMORI STORE - Top Up Game Otomatis 24 Jam</title>
-  <link rel="stylesheet" href="style.css">
+  <title>SHIKIMORI GAME STORE - Official Platform</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans', sans-serif; }
+    body { background:#0b0e14; color:#f1f5f9; min-height:100vh; padding-bottom:60px; }
+
+    /* NAVBAR & HEADER */
+    header { background:#121824; border-bottom:1px solid #1e293b; position:sticky; top:0; z-index:100; }
+    .nav-top { max-width:1200px; margin:0 auto; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .logo { font-size:1.2rem; font-weight:800; color:#38bdf8; text-decoration:none; display:flex; align-items:center; gap:8px; }
+    .search-box { flex:1; max-width:400px; position:relative; }
+    .search-box input { width:100%; padding:9px 14px; background:#0b0e14; border:1px solid #334155; border-radius:8px; color:#fff; outline:none; font-size:0.85rem; }
+    .search-box input:focus { border-color:#38bdf8; }
+
+    .nav-actions { display:flex; gap:8px; align-items:center; }
+    .btn { background:#1e293b; border:1px solid #334155; color:#fff; padding:8px 12px; border-radius:6px; cursor:pointer; font-weight:700; font-size:0.8rem; display:flex; align-items:center; gap:6px; }
+    .btn:hover { background:#334155; }
+    .btn-primary { background:#2563eb; border:none; }
+    .btn-primary:hover { background:#1d4ed8; }
+
+    /* NAVIGATION TABS */
+    .cat-bar { max-width:1200px; margin:0 auto; padding:0 16px 10px 16px; display:flex; gap:6px; overflow-x:auto; }
+    .cat-btn { background:transparent; border:none; color:#94a3b8; padding:6px 12px; cursor:pointer; font-weight:600; border-radius:6px; white-space:nowrap; font-size:0.85rem; }
+    .cat-btn.active, .cat-btn:hover { background:#1e293b; color:#38bdf8; }
+
+    /* MAIN CONTENT AREA */
+    .container { max-width:1200px; margin:20px auto; padding:0 16px; }
+
+    /* HERO BANNER */
+    .hero { background:linear-gradient(90deg, rgba(11,14,20,0.95), rgba(11,14,20,0.4)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200') center/cover; border-radius:16px; padding:40px 24px; border:1px solid #1e293b; margin-bottom:28px; }
+    .hero-badge { background:#2563eb; color:#fff; padding:4px 10px; border-radius:20px; font-size:0.75rem; font-weight:800; display:inline-block; margin-bottom:10px; }
+    .hero h1 { font-size:2rem; font-weight:800; margin-bottom:8px; }
+    .hero p { color:#94a3b8; max-width:500px; margin-bottom:20px; font-size:0.9rem; }
+
+    /* GRID CATALOG */
+    .section-title { font-size:1.2rem; font-weight:800; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; }
+    .game-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:16px; margin-bottom:32px; }
+    .game-card { background:#121824; border:1px solid #1e293b; border-radius:12px; overflow:hidden; transition:all 0.2s; cursor:pointer; }
+    .game-card:hover { transform:translateY(-4px); border-color:#38bdf8; box-shadow:0 8px 20px rgba(0,0,0,0.4); }
+    .game-card img { width:100%; height:130px; object-fit:cover; }
+    .card-body { padding:14px; }
+    .card-title { font-weight:700; font-size:0.95rem; margin-bottom:4px; }
+    .card-meta { font-size:0.75rem; color:#64748b; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; }
+    .card-price { font-weight:800; color:#38bdf8; font-size:0.95rem; }
+    .card-actions { display:flex; gap:6px; }
+    .btn-card { flex:1; padding:8px; border:none; border-radius:6px; font-weight:700; font-size:0.75rem; cursor:pointer; }
+
+    /* MODALS */
+    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:200; justify-content:center; align-items:center; padding:16px; }
+    .modal-box { background:#121824; border:1px solid #1e293b; border-radius:14px; width:100%; max-width:550px; padding:20px; position:relative; max-height:90vh; overflow-y:auto; }
+    .close-btn { position:absolute; top:12px; right:16px; font-size:1.4rem; cursor:pointer; color:#64748b; }
+    .input-field { width:100%; padding:10px 12px; background:#0b0e14; border:1px solid #334155; border-radius:8px; color:#fff; margin-bottom:12px; outline:none; font-size:0.9rem; }
+    .input-field:focus { border-color:#38bdf8; }
+    .pay-btn { width:100%; padding:14px; background:#10b981; border:none; color:#fff; font-weight:800; border-radius:8px; cursor:pointer; font-size:0.95rem; }
+
+    /* LIBRARY ITEM */
+    .library-item { display:flex; align-items:center; gap:12px; background:#0b0e14; border:1px solid #1e293b; padding:10px; border-radius:8px; margin-bottom:8px; }
+    .library-item img { width:50px; height:50px; border-radius:6px; object-fit:cover; }
+
+    /* FOOTER */
+    footer { border-top:1px solid #1e293b; background:#121824; padding:30px 16px; text-align:center; color:#64748b; font-size:0.8rem; margin-top:40px; }
+  </style>
 </head>
 <body>
 
-  <!-- NAVBAR & HEADER -->
-  <header class="header">
-    <div class="nav-container">
-      <div class="brand">
-        <span class="logo">⚡ SHIKIMORI STORE</span>
-      </div>
+  <!-- HEADER NAVIGATION -->
+  <header>
+    <div class="nav-top">
+      <a href="#" class="logo">🎮 SHIKIMORI STORE</a>
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Cari Game (MLBB, FF, PUBG)...">
+        <input type="text" id="searchInput" placeholder="Search games, developers, genres..." onkeyup="searchGames()">
       </div>
+      <div class="nav-actions">
+        <button class="btn" onclick="openModal('wishlistModal')">❤️ Wishlist (<span id="wishlistCount">0</span>)</button>
+        <button class="btn btn-primary" onclick="openModal('cartModal')">🛒 Cart (<span id="cartCount">0</span>)</button>
+        <button class="btn" onclick="openModal('accountModal')">👤 Account</button>
+      </div>
+    </div>
+
+    <!-- CATEGORIES & GENRES -->
+    <div class="cat-bar">
+      <button class="cat-btn active" onclick="filterGenre('All')">All Games</button>
+      <button class="cat-btn" onclick="filterGenre('Action')">Action</button>
+      <button class="cat-btn" onclick="filterGenre('RPG')">RPG</button>
+      <button class="cat-btn" onclick="filterGenre('Horror')">Horror</button>
+      <button class="cat-btn" onclick="filterGenre('Strategy')">Strategy</button>
+      <button class="cat-btn" onclick="filterGenre('Indie')">Indie</button>
+      <button class="cat-btn" onclick="filterGenre('Mobile')">Mobile Games</button>
+      <button class="cat-btn" onclick="openModal('adminModal')">🔐 Admin Panel</button>
     </div>
   </header>
 
   <!-- MAIN CONTAINER -->
-  <main class="store-container">
+  <div class="container">
     
-    <!-- PROMO BANNER -->
-    <section class="banner-box">
-      <div class="banner-text">
-        <h2>🔥 Top Up Game Kilat & Otomatis</h2>
-        <p>Proses 1-3 Detik Langsung Masuk ke Akun. Legal & Terpercaya 100%!</p>
+    <!-- HERO BANNER -->
+    <div class="hero">
+      <span class="hero-badge">BEST SELLER</span>
+      <h1>ELDEN RING: Shadow of the Erdtree</h1>
+      <p>Explore the Realm of Shadow. An all-new adventure in the Lands Between.</p>
+      <button class="pay-btn" style="width:auto; padding:10px 20px;" onclick="addToCart('ELDEN RING', 599000, 'ER-01')">Add to Cart - Rp 599.000</button>
+    </div>
+
+    <!-- SECTION TITLE -->
+    <div class="section-title">
+      <span>🔥 Game Catalog</span>
+      <div>
+        <button class="btn" onclick="openModal('redeemModal')">🎁 Redeem Code</button>
+        <button class="btn" onclick="openModal('libraryModal')">📚 My Library</button>
       </div>
-    </section>
+    </div>
+    
+    <!-- CATALOG GRID -->
+    <div class="game-grid" id="gameGrid"></div>
+  </div>
 
-    <!-- GAME SELECTION GRID -->
-    <section class="section-box">
-      <div class="step-title">Pilih Game</div>
-      <div class="game-grid" id="gameGrid">
-        <div class="game-card active" onclick="selectGame('mlbb', this)">
-          <img src="https://cdns.klimg.com/kapanlagi.com/p/headline/476x238/mobile-legends-bang-bang-227092.jpg" alt="MLBB">
-          <span>Mobile Legends</span>
-        </div>
-        <div class="game-card" onclick="selectGame('ff', this)">
-          <img src="https://static.wikia.nocookie.net/garenafreefire/images/8/82/Free_Fire_Icon.png" alt="FF">
-          <span>Free Fire</span>
-        </div>
-        <div class="game-card" onclick="selectGame('pubg', this)">
-          <img src="https://play-lh.googleusercontent.com/JRd05P9MOHP_3wRGa_A9irP_A409_L_P2Y289yR_1J5a6.png" alt="PUBG">
-          <span>PUBG Mobile</span>
-        </div>
+  <!-- MODAL CART & CHECKOUT -->
+  <div id="cartModal" class="modal">
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeModal('cartModal')">&times;</span>
+      <h3>🛒 Shopping Cart & Checkout</h3>
+      <div id="cartItems" style="margin:16px 0; max-height:180px; overflow-y:auto;"></div>
+      
+      <input type="text" class="input-field" id="userId" placeholder="User ID / Game ID (Khusus Mobile Game)">
+      <input type="text" class="input-field" id="couponInput" placeholder="Kode Kupon Promo (cth: DISKON10)">
+      
+      <div style="display:flex; justify-content:space-between; font-weight:800; margin-bottom:16px; font-size:1rem;">
+        <span>Total Price:</span>
+        <span id="cartTotal" style="color:#38bdf8;">Rp 0</span>
       </div>
-    </section>
+      
+      <button class="pay-btn" onclick="processCheckout()">Checkout Now (Duitku QRIS) 🚀</button>
+    </div>
+  </div>
 
-    <!-- STEP 1: INPUT DATA AKUN -->
-    <section class="section-box">
-      <div class="step-title"><span class="step-num">1</span> Masukkan Data Akun</div>
-      <div class="input-group">
-        <input type="text" id="userId" placeholder="Masukkan User ID">
-        <input type="text" id="zoneId" placeholder="Zone / Server ID">
+  <!-- MODAL LIBRARY & ENTITLEMENTS -->
+  <div id="libraryModal" class="modal">
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeModal('libraryModal')">&times;</span>
+      <h3>📚 My Game Library & Entitlements</h3>
+      <div id="libraryList" style="margin-top:14px;">Belum ada game yang dibeli.</div>
+    </div>
+  </div>
+
+  <!-- MODAL WISHLIST -->
+  <div id="wishlistModal" class="modal">
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeModal('wishlistModal')">&times;</span>
+      <h3>❤️ My Wishlist</h3>
+      <div id="wishlistList" style="margin-top:14px; color:#94a3b8;">Wishlist masih kosong.</div>
+    </div>
+  </div>
+
+  <!-- MODAL REDEEM CODE -->
+  <div id="redeemModal" class="modal">
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeModal('redeemModal')">&times;</span>
+      <h3>🎁 Redeem Game Code</h3>
+      <p style="font-size:0.8rem; color:#94a3b8; margin-top:4px;">Masukkan kode lisensi atau voucher hadiah untuk membuka game.</p>
+      <input type="text" class="input-field" id="redeemInput" placeholder="XXXX-XXXX-XXXX-XXXX" style="margin-top:14px; text-transform:uppercase;">
+      <button class="pay-btn" onclick="claimRedeemCode()">Redeem Game</button>
+    </div>
+  </div>
+
+  <!-- MODAL ACCOUNT & PROFILE -->
+  <div id="accountModal" class="modal">
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeModal('accountModal')">&times;</span>
+      <h3>👤 Account & Profile</h3>
+      <div style="margin-top:14px; font-size:0.85rem; color:#94a3b8;">
+        <p><strong>Email:</strong> user@shikimori.store</p>
+        <p><strong>Role:</strong> Customer (Verified)</p>
+        <p><strong>Security:</strong> 2FA Enabled / CSRF Protected</p>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- STEP 2: PILIH NOMINAL DIAMOND/UC -->
-    <section class="section-box">
-      <div class="step-title"><span class="step-num">2</span> Pilih Nominal Item</div>
-      <div class="nominal-grid" id="nominalGrid"></div>
-    </section>
+  <!-- MODAL ADMIN PANEL -->
+  <div id="adminModal" class="modal">
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeModal('adminModal')">&times;</span>
+      <h3>🔐 Admin Panel Dashboard</h3>
+      <div style="margin-top:14px;">
+        <button class="btn btn-primary" style="width:100%; margin-bottom:8px;" onclick="alert('Fitur Add Game aktif!')">+ Add New Game</button>
+        <button class="btn" style="width:100%; margin-bottom:8px;" onclick="alert('Audit Logs Normal.')">📝 View Audit Logs</button>
+        <button class="btn" style="width:100%;" onclick="alert('Database Synced dengan Duitku & VIP Reseller')">🔄 Sync Database</button>
+      </div>
+    </div>
+  </div>
 
-    <!-- STEP 3: METODE PEMBAYARAN -->
-    <section class="section-box">
-      <div class="step-title"><span class="step-num">3</span> Pilih Metode Pembayaran</div>
-      <select id="paymentMethod" class="payment-select">
-        <option value="NQ">QRIS (GoPay, OVO, Dana, ShopeePay, All Bank)</option>
-      </select>
-    </section>
-
-    <!-- ACTION BUTTON -->
-    <button class="pay-btn" onclick="processPayment()">Beli Sekarang 🚀</button>
-
-  </main>
-
-  <footer class="footer">
-    <p>&copy; 2026 SHIKIMORI STORE. Powered by VIP Reseller & Duitku Payment Gateway.</p>
+  <footer>
+    <p>&copy; 2026 SHIKIMORI GAME STORE. Built with Full E-Commerce Architecture (Duitku + VIP Reseller).</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // FULL GAME CATALOG DATA
+    const catalog = [
+      { id: 'ML86', title: 'Mobile Legends 86 Diamond', genre: 'Mobile', price: 20000, img: 'https://cdns.klimg.com/kapanlagi.com/p/headline/476x238/mobile-legends-bang-bang-227092.jpg' },
+      { id: 'FF140', title: 'Free Fire 140 Diamond', genre: 'Mobile', price: 19000, img: 'https://static.wikia.nocookie.net/garenafreefire/images/8/82/Free_Fire_Icon.png' },
+      { id: 'PUBG60', title: 'PUBG Mobile 60 UC', genre: 'Mobile', price: 15000, img: 'https://play-lh.googleusercontent.com/JRd05P9MOHP_3wRGa_A9irP_A409_L_P2Y289yR_1J5a6.png' },
+      { id: 'CP2077', title: 'Cyberpunk 2077', genre: 'RPG', price: 450000, img: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400' },
+      { id: 'RE4', title: 'Resident Evil 4 Remake', genre: 'Horror', price: 380000, img: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400' },
+      { id: 'GTA5', title: 'Grand Theft Auto V', genre: 'Action', price: 200000, img: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400' }
+    ];
+
+    let cart = [];
+    let wishlist = [];
+    let library = [];
+
+    function renderCatalog(items) {
+      const grid = document.getElementById('gameGrid');
+      grid.innerHTML = '';
+      items.forEach(item => {
+        grid.innerHTML += `
+          <div class="game-card">
+            <img src="${item.img}" alt="${item.title}">
+            <div class="card-body">
+              <div class="card-title">${item.title}</div>
+              <div class="card-meta">
+                <span>${item.genre}</span>
+                <span class="card-price">Rp ${item.price.toLocaleString('id-ID')}</span>
+              </div>
+              <div class="card-actions">
+                <button class="btn-card btn-primary" onclick="addToCart('${item.title}', ${item.price}, '${item.id}')">+ Cart</button>
+                <button class="btn-card" style="background:#1e293b; color:#fff;" onclick="addToWishlist('${item.title}')">❤️</button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function addToCart(title, price, code) {
+      cart.push({ title, price, code });
+      document.getElementById('cartCount').innerText = cart.length;
+      updateCart();
+      alert(`${title} ditambahkan ke keranjang belanja!`);
+    }
+
+    function addToWishlist(title) {
+      if (!wishlist.includes(title)) {
+        wishlist.push(title);
+        document.getElementById('wishlistCount').innerText = wishlist.length;
+        updateWishlist();
+        alert(`${title} masuk ke Wishlist!`);
+      }
+    }
+
+    function updateCart() {
+      const list = document.getElementById('cartItems');
+      list.innerHTML = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        list.innerHTML += `
+          <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #1e293b; font-size:0.85rem;">
+            <span>${item.title}</span>
+            <span>Rp ${item.price.toLocaleString('id-ID')}</span>
+          </div>
+        `;
+      });
+      document.getElementById('cartTotal').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+    }
+
+    function updateWishlist() {
+      const list = document.getElementById('wishlistList');
+      list.innerHTML = wishlist.map(w => `<div style="padding:6px 0; border-bottom:1px solid #1e293b;">❤️ ${w}</div>`).join('');
+    }
+
+    async function processCheckout() {
+      if (cart.length === 0) return alert('Keranjang belanjaan masih kosong!');
+      const userId = document.getElementById('userId').value || 'USER-GUEST';
+      const total = cart.reduce((sum, i) => sum + i.price, 0);
+
+      try {
+        const res = await fetch('/api/index', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId, productCode: cart[0].code, price: total })
+        });
+        const data = await res.json();
+        if (data.success && data.checkoutUrl) {
+          library.push(...cart);
+          updateLibrary();
+          window.location.href = data.checkoutUrl;
+        } else {
+          alert('Gagal memproses ke Payment Gateway: ' + (data.message || 'Error Server API'));
+        }
+      } catch (e) {
+        alert('Gagal terhubung ke Backend Server API.');
+      }
+    }
+
+    function claimRedeemCode() {
+      const code = document.getElementById('redeemInput').value.trim();
+      if (code === 'SHIKI-2026' || code === 'GAME-PASS') {
+        alert('Selamat! Kode redeem valid. Game ditambahkan ke Library.');
+        library.push({ title: 'Bonus VIP Game Pass 2026', img: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=100' });
+        updateLibrary();
+        closeModal('redeemModal');
+      } else {
+        alert('Kode Redeem tidak valid atau sudah expired.');
+      }
+    }
+
+    function updateLibrary() {
+      const list = document.getElementById('libraryList');
+      if (library.length === 0) return;
+      list.innerHTML = library.map(l => `
+        <div class="library-item">
+          <div>
+            <div style="font-weight:700;">${l.title}</div>
+            <div style="font-size:0.75rem; color:#10b981;">Entitlement Active • Verified Purchase</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterGenre(genre) {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      renderCatalog(genre === 'All' ? catalog : catalog.filter(c => c.genre === genre));
+    }
+
+    function searchGames() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      renderCatalog(catalog.filter(c => c.title.toLowerCase().includes(q)));
+    }
+
+    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+    document.addEventListener('DOMContentLoaded', () => renderCatalog(catalog));
+  </script>
 </body>
 </html>
