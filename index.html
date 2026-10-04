@@ -3,78 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shikimori Store - Top Up Game Otomatis</title>
+  <title>Shikimori Store - Top Up Games & Voucher Murah</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="brand-title">⚡ SHIKIMORI STORE</div>
-  </header>
+  <!-- Navbar Navigation -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="logo-icon">🎮</span>
+      <span class="logo-text">SHIKIMORI STORE</span>
+    </div>
+    <div class="nav-right">
+      <span class="flag-icon">🇮🇩</span>
+    </div>
+  </nav>
 
-  <!-- Banner Promo -->
-  <div class="banner">
-    <div class="banner-box">
-      <h2>Top Up Game Kilat 24 Jam</h2>
-      <p>Proses Otomatis, Murah & Legal 100%</p>
+  <!-- Banner Slider Promo -->
+  <div class="banner-section">
+    <div class="banner-card">
+      <div class="banner-tag">PROMO SPESIAL</div>
+      <h2>Top Up Game Instant 24 Jam</h2>
+      <p>Proses Otomatis, Termurah & Terpercaya 100%</p>
     </div>
   </div>
 
-  <div class="container">
-    <!-- Pilihan Game Grid -->
-    <div class="game-grid">
-      <div class="game-card active" onclick="switchGame('mlbb', this)">
-        <img src="https://cdns.klimg.com/kapanlagi.com/p/headline/476x238/mobile-legends-bang-bang-227092.jpg" alt="MLBB">
-        <span>Mobile Legends</span>
-      </div>
-      <div class="game-card" onclick="switchGame('ff', this)">
-        <img src="https://static.wikia.nocookie.net/garenafreefire/images/8/82/Free_Fire_Icon.png" alt="FF">
-        <span>Free Fire</span>
-      </div>
-      <div class="game-card" onclick="switchGame('pubg', this)">
-        <img src="https://play-lh.googleusercontent.com/JRd05P9MOHP_3wRGa_A9irP_A409_L_P2Y289yR_1J5a6.png" alt="PUBG">
-        <span>PUBG Mobile</span>
-      </div>
-    </div>
-
-    <!-- Step 1: Input ID -->
-    <div class="section">
-      <div class="section-title">
-        <span class="step-num">1</span>
-        <span>Masukkan Data Akun</span>
-      </div>
-      <div class="input-group">
-        <input type="text" id="userId" placeholder="User ID">
-        <input type="text" id="zoneId" placeholder="Zone / Server ID">
-      </div>
-    </div>
-
-    <!-- Step 2: Pilih Nominal -->
-    <div class="section">
-      <div class="section-title">
-        <span class="step-num">2</span>
-        <span>Pilih Nominal Item</span>
-      </div>
-      <div class="nominal-grid" id="nominalGrid">
-        <!-- Diisi otomatis oleh JavaScript -->
-      </div>
-    </div>
-
-    <!-- Step 3: Pembayaran -->
-    <div class="section">
-      <div class="section-title">
-        <span class="step-num">3</span>
-        <span>Metode Pembayaran</span>
-      </div>
-      <select id="paymentMethod" class="payment-select">
-        <option value="NQ">QRIS (GoPay, OVO, Dana, ShopeePay, All Bank)</option>
-      </select>
-    </div>
-
-    <button class="pay-btn" onclick="processPayment()">Beli Sekarang 🚀</button>
+  <!-- Search Bar -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Cari Game di Shikimori Store..." onkeyup="searchGame()">
   </div>
 
-  <script src="script.js"></script>
+  <!-- Section Grid Game -->
+  <main class="main-content">
+    <div class="section-header">
+      <h2>TOP UP GAME</h2>
+    </div>
+
+    <div class="game-grid" id="gameGrid">
+      <a href="order.html?game=mlbb" class="game-item">
+        <img src="https://cdns.klimg.com/kapanlagi.com/p/headline/476x238/mobile-legends-bang-bang-227092.jpg" alt="Mobile Legends">
+        <span>Mobile Legends Diamonds</span>
+      </a>
+
+      <a href="order.html?game=ff" class="game-item">
+        <img src="https://static.wikia.nocookie.net/garenafreefire/images/8/82/Free_Fire_Icon.png" alt="Free Fire">
+        <span>Free Fire Diamonds</span>
+      </a>
+
+      <a href="order.html?game=pubg" class="game-item">
+        <img src="https://play-lh.googleusercontent.com/JRd05P9MOHP_3wRGa_A9irP_A409_L_P2Y289yR_1J5a6.png" alt="PUBG Mobile">
+        <span>PUBG Mobile UC</span>
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-brand">🎮 SHIKIMORI STORE</div>
+    <p>Situs resmi top up games dan voucher harga terluas, tercepat, dan terpercaya.</p>
+    <div class="footer-copy">&copy; 2026 Shikimori Store. All Rights Reserved.</div>
+  </footer>
+
+  <script>
+    function searchGame() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.game-item');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(input) ? 'flex' : 'none';
+      });
+    }
+  </script>
 </body>
 </html>
