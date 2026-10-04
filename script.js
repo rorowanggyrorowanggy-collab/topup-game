@@ -1,13 +1,9 @@
-let selectedProduct = null;
-let selectedPrice = 0;
+let selectedNominal = null;
 
-function selectItem(code, price) {
-  selectedProduct = code;
-  selectedPrice = price;
-  
-  // Efek penanda tombol aktif
-  document.querySelectorAll('.item-btn').forEach(btn => btn.classList.remove('selected'));
-  event.target.classList.add('selected');
+function selectNominal(element, price, code) {
+  document.querySelectorAll('.nominal-btn').forEach(btn => btn.classList.remove('active'));
+  element.classList.add('active');
+  selectedNominal = { price, code };
 }
 
 async function processPayment() {
@@ -15,29 +11,39 @@ async function processPayment() {
   const zoneId = document.getElementById('zoneId').value;
   const paymentMethod = document.getElementById('paymentMethod').value;
 
-  if (!userId || !zoneId || !selectedProduct) {
-    alert('Mohon lengkapi ID Game dan pilih Nominal Diamond!');
+  if (!userId || !selectedNominal) {
+    alert('Harap isi User ID dan pilih nominal diamond!');
     return;
   }
 
-  // Kirim data transaksi ke backend Vercel (api/create-payment)
-  const response = await fetch('/create-payment', ...    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      userId,
-      zoneId,
-      productCode: selectedProduct,
-      price: selectedPrice,
-      paymentMethod
-    })
-  });
+  const btn = document.querySelector('.pay-btn');
+  btn.innerText = 'Memproses...';
+  btn.disabled = true;
 
-  const result = await response.json();
+  try {
+    const response = await fetch('/api/create-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId,
+        zoneId,
+        productCode: selectedNominal.code,
+        price: selectedNominal.price,
+        paymentMethod
+      })
+    });
 
-  if (result.success) {
-    // Alihkan pembeli ke halaman pembayaran QRIS Tripay
-    window.location.href = result.data.checkout_url;
-  } else {
-    alert('Gagal membuat pesanan: ' + result.message);
+    const result = await response.json();
+
+    if (result.success && result.data.checkout_url) {
+      window.location.href = result.data.checkout_url;
+    } else {
+      alert('Gagal membuat pembayaran: ' + (result.message || 'Terjadi kesalahan'));
+    }
+  } catch (error) {
+    alert('Terjadi kesalahan koneksi ke server.');
+  } finally {
+    btn.innerText = 'Bayar Sekarang';
+    btn.disabled = false;
   }
 }
