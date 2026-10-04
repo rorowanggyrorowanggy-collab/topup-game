@@ -3,106 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHIKIMORI GAME STORE - Digital Distribution Platform</title>
+  <title>SHIKIMORI STORE - Top Up Game Otomatis 24 Jam</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- HEADER & NAVIGATION -->
+  <!-- NAVBAR & HEADER -->
   <header class="header">
     <div class="nav-container">
       <div class="brand">
-        <span class="logo">🎮 SHIKIMORI STORE</span>
+        <span class="logo">⚡ SHIKIMORI STORE</span>
       </div>
-      
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search games, deals, genres..." onkeyup="filterGames()">
-      </div>
-
-      <div class="nav-actions">
-        <button class="nav-btn" onclick="openModal('wishlistModal')">Wishlist (<span id="wishlistCount">0</span>)</button>
-        <button class="nav-btn cart-btn" onclick="openModal('cartModal')">🛒 Cart (<span id="cartCount">0</span>)</button>
-        <button class="nav-btn auth-btn" onclick="openModal('authModal')">Account / Login</button>
+        <input type="text" id="searchInput" placeholder="Cari Game (MLBB, FF, PUBG)...">
       </div>
     </div>
-
-    <!-- CATEGORIES & GENRES BAR -->
-    <nav class="category-bar">
-      <button class="cat-btn active" onclick="filterGenre('All')">All Games</button>
-      <button class="cat-btn" onclick="filterGenre('Action')">Action</button>
-      <button class="cat-btn" onclick="filterGenre('Adventure')">Adventure</button>
-      <button class="cat-btn" onclick="filterGenre('RPG')">RPG</button>
-      <button class="cat-btn" onclick="filterGenre('Horror')">Horror</button>
-      <button class="cat-btn" onclick="filterGenre('Strategy')">Strategy</button>
-      <button class="cat-btn" onclick="filterGenre('Deals')">🔥 Deals</button>
-    </nav>
   </header>
 
-  <!-- MAIN CATALOG CONTENT -->
+  <!-- MAIN CONTAINER -->
   <main class="store-container">
     
-    <!-- FEATURED BANNER / NEW RELEASES -->
-    <section class="featured-banner">
-      <div class="banner-content">
-        <span class="badge">BEST SELLER</span>
-        <h1>ELDEN RING: Shadow of the Erdtree</h1>
-        <p>Explore the Realm of Shadow. An all-new adventure awaits in the Lands Between.</p>
-        <div class="banner-action">
-          <span class="price">Rp 599.000</span>
-          <button class="buy-now-btn" onclick="addToCart('Elden Ring', 599000)">Add to Cart</button>
+    <!-- PROMO BANNER -->
+    <section class="banner-box">
+      <div class="banner-text">
+        <h2>🔥 Top Up Game Kilat & Otomatis</h2>
+        <p>Proses 1-3 Detik Langsung Masuk ke Akun. Legal & Terpercaya 100%!</p>
+      </div>
+    </section>
+
+    <!-- GAME SELECTION GRID -->
+    <section class="section-box">
+      <div class="step-title">Pilih Game</div>
+      <div class="game-grid" id="gameGrid">
+        <div class="game-card active" onclick="selectGame('mlbb', this)">
+          <img src="https://cdns.klimg.com/kapanlagi.com/p/headline/476x238/mobile-legends-bang-bang-227092.jpg" alt="MLBB">
+          <span>Mobile Legends</span>
+        </div>
+        <div class="game-card" onclick="selectGame('ff', this)">
+          <img src="https://static.wikia.nocookie.net/garenafreefire/images/8/82/Free_Fire_Icon.png" alt="FF">
+          <span>Free Fire</span>
+        </div>
+        <div class="game-card" onclick="selectGame('pubg', this)">
+          <img src="https://play-lh.googleusercontent.com/JRd05P9MOHP_3wRGa_A9irP_A409_L_P2Y289yR_1J5a6.png" alt="PUBG">
+          <span>PUBG Mobile</span>
         </div>
       </div>
     </section>
 
-    <!-- GAME CATALOG GRID -->
-    <section class="catalog-section">
-      <h2>Game Catalog</h2>
-      <div class="game-grid" id="gameGrid">
-        <!-- Card items loaded via JS -->
+    <!-- STEP 1: INPUT DATA AKUN -->
+    <section class="section-box">
+      <div class="step-title"><span class="step-num">1</span> Masukkan Data Akun</div>
+      <div class="input-group">
+        <input type="text" id="userId" placeholder="Masukkan User ID">
+        <input type="text" id="zoneId" placeholder="Zone / Server ID">
       </div>
     </section>
 
+    <!-- STEP 2: PILIH NOMINAL DIAMOND/UC -->
+    <section class="section-box">
+      <div class="step-title"><span class="step-num">2</span> Pilih Nominal Item</div>
+      <div class="nominal-grid" id="nominalGrid"></div>
+    </section>
+
+    <!-- STEP 3: METODE PEMBAYARAN -->
+    <section class="section-box">
+      <div class="step-title"><span class="step-num">3</span> Pilih Metode Pembayaran</div>
+      <select id="paymentMethod" class="payment-select">
+        <option value="NQ">QRIS (GoPay, OVO, Dana, ShopeePay, All Bank)</option>
+      </select>
+    </section>
+
+    <!-- ACTION BUTTON -->
+    <button class="pay-btn" onclick="processPayment()">Beli Sekarang 🚀</button>
+
   </main>
 
-  <!-- USER ACCOUNT & LIBRARY SECTION -->
-  <section class="user-library-section">
-    <div class="store-container">
-      <h2>My Game Library & History</h2>
-      <div class="library-grid" id="libraryGrid">
-        <p class="empty-text">No games purchased yet. Your entitlements will appear here after checkout.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- MODAL CART & CHECKOUT -->
-  <div id="cartModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal('cartModal')">&times;</span>
-      <h2>Your Shopping Cart</h2>
-      <div id="cartItems" class="cart-items-list"></div>
-      <div class="cart-footer">
-        <h3>Total: <span id="cartTotal">Rp 0</span></h3>
-        <button class="checkout-btn" onclick="processCheckout()">Checkout Now (Duitku QRIS)</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL AUTH -->
-  <div id="authModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal('authModal')">&times;</span>
-      <h2>User Authentication (2FA)</h2>
-      <form onsubmit="handleLogin(event)" class="auth-form">
-        <input type="email" placeholder="Email Address" required>
-        <input type="password" placeholder="Password" required>
-        <button type="submit" class="checkout-btn">Login / Register</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
   <footer class="footer">
-    <p>&copy; 2026 SHIKIMORI GAME STORE. Built with Full E-Commerce Architecture.</p>
+    <p>&copy; 2026 SHIKIMORI STORE. Powered by VIP Reseller & Duitku Payment Gateway.</p>
   </footer>
 
   <script src="script.js"></script>
