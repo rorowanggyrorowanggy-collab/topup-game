@@ -15,7 +15,7 @@
     .nav-container { max-width:1200px; margin:0 auto; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
     
     .brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
-    .brand-logo { width:42px; height:42px; border-radius:10px; object-fit:cover; border:2px solid #38bdf8; box-shadow:0 0 10px rgba(56, 189, 248, 0.4); }
+    .brand-logo { width:44px; height:44px; border-radius:10px; object-fit:cover; border:2px solid #38bdf8; box-shadow:0 0 10px rgba(56, 189, 248, 0.4); }
     .brand-title { font-size:1.2rem; font-weight:800; color:#38bdf8; letter-spacing:0.5px; }
 
     .search-box { flex:1; min-width:180px; max-width:380px; }
@@ -39,8 +39,7 @@
 
     /* HERO BANNER */
     .hero { 
-      background: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.95)), 
-                  url('https://i.ibb.co/L8r4vS5/1000411506.png') center/cover; 
+      background: linear-gradient(135deg, #0f172a, #1e1b4b); 
       border-radius:16px; 
       padding:24px; 
       border:1px solid #1e293b; 
@@ -49,7 +48,7 @@
       align-items: center;
       gap: 20px;
     }
-    .hero-img { width: 80px; height: 80px; border-radius: 16px; border: 2px solid #38bdf8; object-fit: cover; box-shadow:0 0 15px rgba(56, 189, 248, 0.3); }
+    .hero-img { width: 85px; height: 85px; border-radius: 16px; border: 2px solid #38bdf8; object-fit: cover; box-shadow:0 0 15px rgba(56, 189, 248, 0.3); }
     .hero-text { flex: 1; }
     .hero-badge { background:#2563eb; color:#fff; padding:4px 10px; border-radius:20px; font-size:0.75rem; font-weight:800; display:inline-block; margin-bottom:8px; }
     .hero h1 { font-size:1.5rem; font-weight:800; margin-bottom:6px; color:#fff; }
@@ -101,8 +100,8 @@
   <header>
     <div class="nav-container">
       <a href="#" class="brand">
-        <!-- LOGO PIKACHU PLP PROJECT ASLI MILIKMU -->
-        <img src="https://i.ibb.co/L8r4vS5/1000411506.png" class="brand-logo" alt="PLP PROJECT Logo">
+        <!-- LOGO PIKACHU PLP PROJECT EMBEDDED DIRECT -->
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="brand-logo" alt="PLP PROJECT Logo">
         <span class="brand-title">PLP TOP UP</span>
       </a>
 
@@ -127,7 +126,6 @@
       <button class="cat-btn active" onclick="filterCat('All')">Semua Game</button>
       <button class="cat-btn" onclick="filterCat('Mobile')">Mobile Games</button>
       <button class="cat-btn" onclick="filterCat('PC')">PC Games</button>
-      <button class="cat-btn" onclick="filterCat('Voucher')">Voucher</button>
       <button class="cat-btn" onclick="openModal('libraryModal')">📚 My Library</button>
       <button class="cat-btn" onclick="openModal('adminModal')">🔐 Admin Panel</button>
     </div>
@@ -136,7 +134,7 @@
   <!-- MAIN CONTENT -->
   <div class="container">
     <div class="hero">
-      <img src="https://i.ibb.co/L8r4vS5/1000411506.png" class="hero-img" alt="PLP Project Logo">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="hero-img" alt="PLP Project Logo">
       <div class="hero-text">
         <span class="hero-badge">OFFICIAL DIGITAL STORE</span>
         <h1>PLP TOP UP - Game Store & Voucher</h1>
@@ -222,19 +220,18 @@
   </footer>
 
   <script>
-    // KATALOG POSTER HIGH-RES RESMI
+    // KATALOG POSTER GAME BEBAS BLOKIR (LINK DIRECT FAST CDN)
     const catalog = [
-      { id: 'ML86', title: 'Mobile Legends 86 Diamond', type: 'Mobile', price: 20000, img: 'https://images.tokopedia.net/img/kategori/2021/6/15/8e19c0b1-ef12-429a-8b89-a2e639908865.jpg' },
-      { id: 'ML172', title: 'Mobile Legends 172 Diamond', type: 'Mobile', price: 40000, img: 'https://images.tokopedia.net/img/kategori/2021/6/15/8e19c0b1-ef12-429a-8b89-a2e639908865.jpg' },
-      { id: 'ML257', title: 'Mobile Legends 257 Diamond', type: 'Mobile', price: 60000, img: 'https://images.tokopedia.net/img/kategori/2021/6/15/8e19c0b1-ef12-429a-8b89-a2e639908865.jpg' },
-      { id: 'FF140', title: 'Free Fire 140 Diamond', type: 'Mobile', price: 19000, img: 'https://images.tokopedia.net/img/kategori/2021/6/15/d2f62cb9-89a0-410e-8d2b-31d7f6426462.jpg' },
-      { id: 'FF355', title: 'Free Fire 355 Diamond', type: 'Mobile', price: 48000, img: 'https://images.tokopedia.net/img/kategori/2021/6/15/d2f62cb9-89a0-410e-8d2b-31d7f6426462.jpg' },
-      { id: 'PUBG60', title: 'PUBG Mobile 60 UC', type: 'Mobile', price: 15000, img: 'https://images.tokopedia.net/img/kategori/2021/6/15/7a858fb3-a9d3-488f-9154-8e1042aa1552.jpg' },
-      { id: 'PUBG325', title: 'PUBG Mobile 325 UC', type: 'Mobile', price: 75000, img: 'https://images.tokopedia.net/img/kategori/2021/6/15/7a858fb3-a9d3-488f-9154-8e1042aa1552.jpg' },
+      { id: 'ML86', title: 'Mobile Legends 86 Diamond', type: 'Mobile', price: 20000, img: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Mobile_Legends_Bang_Bang_logo.png/500px-Mobile_Legends_Bang_Bang_logo.png' },
+      { id: 'ML172', title: 'Mobile Legends 172 Diamond', type: 'Mobile', price: 40000, img: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Mobile_Legends_Bang_Bang_logo.png/500px-Mobile_Legends_Bang_Bang_logo.png' },
+      { id: 'ML257', title: 'Mobile Legends 257 Diamond', type: 'Mobile', price: 60000, img: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Mobile_Legends_Bang_Bang_logo.png/500px-Mobile_Legends_Bang_Bang_logo.png' },
+      { id: 'FF140', title: 'Free Fire 140 Diamond', type: 'Mobile', price: 19000, img: 'https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Garena_Free_Fire_logo.png/500px-Garena_Free_Fire_logo.png' },
+      { id: 'FF355', title: 'Free Fire 355 Diamond', type: 'Mobile', price: 48000, img: 'https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Garena_Free_Fire_logo.png/500px-Garena_Free_Fire_logo.png' },
+      { id: 'PUBG60', title: 'PUBG Mobile 60 UC', type: 'Mobile', price: 15000, img: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/PUBG_Mobile_logo.png/500px-PUBG_Mobile_logo.png' },
+      { id: 'PUBG325', title: 'PUBG Mobile 325 UC', type: 'Mobile', price: 75000, img: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/PUBG_Mobile_logo.png/500px-PUBG_Mobile_logo.png' },
       { id: 'CP2077', title: 'Cyberpunk 2077 Digital', type: 'PC', price: 450000, img: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg' },
       { id: 'RE4', title: 'Resident Evil 4 Remake', type: 'PC', price: 380000, img: 'https://cdn.cloudflare.steamstatic.com/steam/apps/2050650/header.jpg' },
-      { id: 'GTA5', title: 'Grand Theft Auto V Premium', type: 'PC', price: 200000, img: 'https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg' },
-      { id: 'STEAM100', title: 'Steam Wallet IDR 100K', type: 'Voucher', price: 105000, img: 'https://images.tokopedia.net/img/kategori/2021/6/15/8483f1df-2be9-4113-90d5-32128b9d628d.jpg' }
+      { id: 'GTA5', title: 'Grand Theft Auto V Premium', type: 'PC', price: 200000, img: 'https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg' }
     ];
 
     let currentUser = null;
