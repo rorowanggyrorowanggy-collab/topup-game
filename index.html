@@ -3,46 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toko Top Up Game</title>
+  <title>Shikimori Store - Top Up Game Otomatis</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Toko Top Up Game</h1>
 
-    <!-- Pilihan Game -->
-    <div class="game-selector">
-      <button class="game-btn active" onclick="switchGame('mlbb')">Mobile Legends</button>
-      <button class="game-btn" onclick="switchGame('ff')">Free Fire</button>
-      <button class="game-btn" onclick="switchGame('pubg')">PUBG Mobile</button>
+  <!-- Header -->
+  <header class="header">
+    <div class="brand-title">⚡ SHIKIMORI STORE</div>
+  </header>
+
+  <!-- Banner Promo -->
+  <div class="banner">
+    <div class="banner-box">
+      <h2>Top Up Game Kilat 24 Jam</h2>
+      <p>Proses Otomatis, Murah & Legal 100%</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Pilihan Game Grid -->
+    <div class="game-grid">
+      <div class="game-card active" onclick="switchGame('mlbb', this)">
+        <img src="https://cdns.klimg.com/kapanlagi.com/p/headline/476x238/mobile-legends-bang-bang-227092.jpg" alt="MLBB">
+        <span>Mobile Legends</span>
+      </div>
+      <div class="game-card" onclick="switchGame('ff', this)">
+        <img src="https://static.wikia.nocookie.net/garenafreefire/images/8/82/Free_Fire_Icon.png" alt="FF">
+        <span>Free Fire</span>
+      </div>
+      <div class="game-card" onclick="switchGame('pubg', this)">
+        <img src="https://play-lh.googleusercontent.com/JRd05P9MOHP_3wRGa_A9irP_A409_L_P2Y289yR_1J5a6.png" alt="PUBG">
+        <span>PUBG Mobile</span>
+      </div>
     </div>
 
-    <!-- Form Input Account -->
+    <!-- Step 1: Input ID -->
     <div class="section">
-      <h3>1. Masukkan Data Akun</h3>
+      <div class="section-title">
+        <span class="step-num">1</span>
+        <span>Masukkan Data Akun</span>
+      </div>
       <div class="input-group">
         <input type="text" id="userId" placeholder="User ID">
-        <input type="text" id="zoneId" placeholder="Zone / Server ID (Jika Ada)">
+        <input type="text" id="zoneId" placeholder="Zone / Server ID">
       </div>
     </div>
 
-    <!-- Pilihan Nominal Product -->
+    <!-- Step 2: Pilih Nominal -->
     <div class="section">
-      <h3>2. Pilih Nominal</h3>
+      <div class="section-title">
+        <span class="step-num">2</span>
+        <span>Pilih Nominal Item</span>
+      </div>
       <div class="nominal-grid" id="nominalGrid">
-        <!-- Pilihan produk diisi otomatis oleh script.js -->
+        <!-- Diisi otomatis oleh JavaScript -->
       </div>
     </div>
 
-    <!-- Metode Pembayaran -->
+    <!-- Step 3: Pembayaran -->
     <div class="section">
-      <h3>3. Pilih Pembayaran</h3>
-      <select id="paymentMethod">
-        <option value="NQ">QRIS (Semua E-Wallet & Bank)</option>
+      <div class="section-title">
+        <span class="step-num">3</span>
+        <span>Metode Pembayaran</span>
+      </div>
+      <select id="paymentMethod" class="payment-select">
+        <option value="NQ">QRIS (GoPay, OVO, Dana, ShopeePay, All Bank)</option>
       </select>
     </div>
 
-    <button class="pay-btn" onclick="processPayment()">Bayar Sekarang</button>
+    <button class="pay-btn" onclick="processPayment()">Beli Sekarang 🚀</button>
   </div>
 
   <script src="script.js"></script>
