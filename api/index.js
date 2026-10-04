@@ -8,11 +8,12 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   if (req.method === 'POST') {
-    const { userId, productCode, price } = req.body;
+    const { userId, zoneId, productCode, price } = req.body;
     const merchantOrderId = 'ORD-' + Date.now();
     const merchantCode = process.env.DUITKU_MERCHANT_CODE || 'DS36128';
     const apiKey = process.env.DUITKU_API_KEY || 'a8bc95f67d5344c530597321fcd307d9';
 
+    // MD5 Signature Calculation
     const signature = crypto.createHash('md5')
       .update(merchantCode + merchantOrderId + price + apiKey)
       .digest('hex');
@@ -26,8 +27,8 @@ export default async function handler(req, res) {
           paymentAmount: price,
           paymentMethod: 'NQ',
           merchantOrderId,
-          productDetails: `Order ${productCode}`,
-          additionalParam: `${userId}|${productCode}`,
+          productDetails: `TopUp ${productCode}`,
+          additionalParam: `${userId}|${zoneId}|${productCode}`,
           callbackUrl: `https://${req.headers.host}/api/index`,
           returnUrl: `https://${req.headers.host}`,
           signature
@@ -45,5 +46,5 @@ export default async function handler(req, res) {
     }
   }
 
-  return res.status(200).json({ status: 'API Server Active' });
+  return res.status(200).json({ status: 'Game Store Backend Active' });
 }
