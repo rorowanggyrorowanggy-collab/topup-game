@@ -3,211 +3,189 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHIKIMORI GAME STORE - Digital Platform & Top Up</title>
+  <title>PLP TOP UP - Official Digital Game Store</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
 
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans', sans-serif; }
-    body { background:#0b0e14; color:#f1f5f9; min-height:100vh; padding-bottom:60px; }
+    body { background:#090d16; color:#f1f5f9; min-height:100vh; padding-bottom:60px; }
 
     /* HEADER & NAVBAR */
-    header { background:#121824; border-bottom:1px solid #1e293b; position:sticky; top:0; z-index:100; }
-    .nav-top { max-width:1200px; margin:0 auto; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
-    .logo { font-size:1.2rem; font-weight:800; color:#38bdf8; text-decoration:none; display:flex; align-items:center; gap:8px; }
-    .search-box { flex:1; max-width:400px; }
-    .search-box input { width:100%; padding:9px 14px; background:#0b0e14; border:1px solid #334155; border-radius:8px; color:#fff; outline:none; font-size:0.85rem; }
+    header { background:#111827; border-bottom:1px solid #1e293b; position:sticky; top:0; z-index:100; }
+    .nav-container { max-width:1200px; margin:0 auto; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+    
+    .brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .brand-logo { width:36px; height:36px; border-radius:8px; object-fit:cover; }
+    .brand-title { font-size:1.1rem; font-weight:800; color:#38bdf8; letter-spacing:0.5px; }
+
+    .search-box { flex:1; min-width:200px; max-width:350px; }
+    .search-box input { width:100%; padding:8px 12px; background:#090d16; border:1px solid #334155; border-radius:8px; color:#fff; outline:none; font-size:0.8rem; }
     .search-box input:focus { border-color:#38bdf8; }
 
     .nav-actions { display:flex; gap:8px; align-items:center; }
-    .btn { background:#1e293b; border:1px solid #334155; color:#fff; padding:8px 12px; border-radius:6px; cursor:pointer; font-weight:700; font-size:0.8rem; display:flex; align-items:center; gap:6px; }
-    .btn:hover { background:#334155; }
+    .btn { background:#1e293b; border:1px solid #334155; color:#fff; padding:7px 11px; border-radius:8px; cursor:pointer; font-weight:700; font-size:0.75rem; white-space:nowrap; }
     .btn-primary { background:#2563eb; border:none; }
     .btn-primary:hover { background:#1d4ed8; }
-    .user-profile-badge { background:#0369a1; padding:6px 12px; border-radius:20px; font-size:0.8rem; font-weight:700; color:#fff; display:none; }
+
+    .user-profile-badge { display:none; background:#0284c7; padding:6px 12px; border-radius:20px; font-size:0.75rem; font-weight:700; color:#fff; }
 
     /* CATEGORIES & NAVIGATION */
     .cat-bar { max-width:1200px; margin:0 auto; padding:0 16px 10px 16px; display:flex; gap:6px; overflow-x:auto; }
-    .cat-btn { background:transparent; border:none; color:#94a3b8; padding:6px 12px; cursor:pointer; font-weight:600; border-radius:6px; white-space:nowrap; font-size:0.85rem; }
+    .cat-btn { background:transparent; border:none; color:#94a3b8; padding:6px 12px; cursor:pointer; font-weight:600; border-radius:6px; white-space:nowrap; font-size:0.8rem; }
     .cat-btn.active, .cat-btn:hover { background:#1e293b; color:#38bdf8; }
 
     /* MAIN CONTAINER */
-    .container { max-width:1200px; margin:20px auto; padding:0 16px; }
+    .container { max-width:1200px; margin:16px auto; padding:0 16px; }
 
     /* HERO BANNER */
-    .hero { background:linear-gradient(135deg, #1e1b4b, #0f172a); border-radius:16px; padding:32px 24px; border:1px solid #1e293b; margin-bottom:28px; position:relative; overflow:hidden; }
-    .hero-badge { background:#2563eb; color:#fff; padding:4px 10px; border-radius:20px; font-size:0.75rem; font-weight:800; display:inline-block; margin-bottom:10px; }
-    .hero h1 { font-size:1.8rem; font-weight:800; margin-bottom:8px; }
-    .hero p { color:#94a3b8; max-width:500px; margin-bottom:16px; font-size:0.9rem; }
+    .hero { background:linear-gradient(135deg, #1e1b4b, #0f172a); border-radius:14px; padding:24px 20px; border:1px solid #1e293b; margin-bottom:20px; }
+    .hero-badge { background:#2563eb; color:#fff; padding:3px 8px; border-radius:20px; font-size:0.7rem; font-weight:800; display:inline-block; margin-bottom:8px; }
+    .hero h1 { font-size:1.5rem; font-weight:800; margin-bottom:6px; }
+    .hero p { color:#94a3b8; max-width:500px; font-size:0.85rem; margin-bottom:14px; }
 
     /* GRID KATALOG GAME */
-    .section-title { font-size:1.2rem; font-weight:800; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; }
-    .game-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:16px; margin-bottom:32px; }
-    .game-card { background:#121824; border:1px solid #1e293b; border-radius:12px; overflow:hidden; transition:all 0.2s; cursor:pointer; }
-    .game-card:hover { transform:translateY(-4px); border-color:#38bdf8; box-shadow:0 8px 20px rgba(0,0,0,0.4); }
-    .card-banner { height:120px; background:#1e293b; display:flex; align-items:center; justify-content:center; font-size:2.5rem; }
-    .card-body { padding:12px; }
-    .card-title { font-weight:700; font-size:0.9rem; margin-bottom:4px; }
-    .card-meta { font-size:0.75rem; color:#64748b; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; }
-    .card-price { font-weight:800; color:#38bdf8; font-size:0.9rem; }
-    .card-actions { display:flex; gap:6px; }
-    .btn-card { flex:1; padding:8px; border:none; border-radius:6px; font-weight:700; font-size:0.75rem; cursor:pointer; }
+    .section-title { font-size:1.1rem; font-weight:800; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center; }
+    .game-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:12px; margin-bottom:28px; }
+    .game-card { background:#111827; border:1px solid #1e293b; border-radius:12px; overflow:hidden; transition:all 0.2s; cursor:pointer; }
+    .game-card:hover { transform:translateY(-3px); border-color:#38bdf8; }
+    .card-banner { height:100px; background:#1e293b; display:flex; align-items:center; justify-content:center; font-size:2rem; }
+    .card-body { padding:10px; }
+    .card-title { font-weight:700; font-size:0.85rem; margin-bottom:4px; }
+    .card-meta { font-size:0.7rem; color:#64748b; margin-bottom:8px; display:flex; justify-content:space-between; }
+    .card-price { font-weight:800; color:#38bdf8; font-size:0.85rem; }
+    .btn-card { width:100%; padding:7px; border:none; border-radius:6px; font-weight:700; font-size:0.75rem; cursor:pointer; background:#2563eb; color:#fff; }
 
-    /* MODAL WINDOWS */
+    /* MODALS */
     .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:200; justify-content:center; align-items:center; padding:16px; }
-    .modal-box { background:#121824; border:1px solid #1e293b; border-radius:14px; width:100%; max-width:550px; padding:20px; position:relative; max-height:90vh; overflow-y:auto; }
-    .close-btn { position:absolute; top:12px; right:16px; font-size:1.4rem; cursor:pointer; color:#64748b; }
-    .input-field { width:100%; padding:10px 12px; background:#0b0e14; border:1px solid #334155; border-radius:8px; color:#fff; margin-bottom:12px; outline:none; font-size:0.9rem; }
-    .input-field:focus { border-color:#38bdf8; }
-    .pay-btn { width:100%; padding:14px; background:#10b981; border:none; color:#fff; font-weight:800; border-radius:8px; cursor:pointer; font-size:0.95rem; }
-
-    /* ITEM LISTS */
-    .item-row { display:flex; justify-content:space-between; align-items:center; padding:10px; background:#0b0e14; border:1px solid #1e293b; border-radius:8px; margin-bottom:8px; font-size:0.85rem; }
+    .modal-box { background:#111827; border:1px solid #1e293b; border-radius:14px; width:100%; max-width:480px; padding:20px; position:relative; max-height:90vh; overflow-y:auto; }
+    .close-btn { position:absolute; top:12px; right:16px; font-size:1.3rem; cursor:pointer; color:#64748b; }
+    .input-field { width:100%; padding:10px; background:#090d16; border:1px solid #334155; border-radius:8px; color:#fff; margin-bottom:10px; outline:none; font-size:0.85rem; }
+    .pay-btn { width:100%; padding:12px; background:#10b981; border:none; color:#fff; font-weight:800; border-radius:8px; cursor:pointer; font-size:0.9rem; }
 
     /* FOOTER */
-    footer { border-top:1px solid #1e293b; background:#121824; padding:30px 16px; text-align:center; color:#64748b; font-size:0.8rem; margin-top:40px; }
+    footer { border-top:1px solid #1e293b; background:#111827; padding:24px 16px; text-align:center; color:#64748b; font-size:0.75rem; margin-top:30px; }
   </style>
+
+  <!-- Google One Tap / Sign-In SDK -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- HEADER NAVBAR -->
   <header>
-    <div class="nav-top">
-      <a href="#" class="logo">⚡ SHIKIMORI GAME STORE</a>
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <img src="https://i.ibb.co/L8r4vS5/1000411506.png" class="brand-logo" alt="PLP Logo">
+        <span class="brand-title">PLP TOP UP</span>
+      </a>
+
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Cari Game, Genre, Publisher..." onkeyup="searchGames()">
+        <input type="text" id="searchInput" placeholder="Cari Game / Diamond..." onkeyup="searchGames()">
       </div>
+
       <div class="nav-actions">
+        <!-- Tombol Google Sign-In -->
+        <div id="g_id_onload"
+             data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+             data-callback="handleGoogleLogin">
+        </div>
+        <div class="g_id_signin" data-type="standard" data-size="small" data-theme="dark"></div>
+
         <div id="userBadge" class="user-profile-badge">👤 <span id="userName">User</span></div>
-        <button id="loginNavBtn" class="btn btn-primary" onclick="openModal('authModal')">🔑 Login / Register</button>
         <button class="btn" onclick="openModal('cartModal')">🛒 Cart (<span id="cartCount">0</span>)</button>
       </div>
     </div>
 
-    <!-- CATEGORY BAR -->
     <div class="cat-bar">
-      <button class="cat-btn active" onclick="filterCategory('All')">Semua Game</button>
-      <button class="cat-btn" onclick="filterCategory('Mobile')">Mobile Games</button>
-      <button class="cat-btn" onclick="filterCategory('PC')">PC / Console</button>
-      <button class="cat-btn" onclick="filterCategory('Action')">Action</button>
-      <button class="cat-btn" onclick="filterCategory('RPG')">RPG</button>
-      <button class="cat-btn" onclick="filterCategory('Strategy')">Strategy</button>
+      <button class="cat-btn active" onclick="filterCat('All')">Semua Game</button>
+      <button class="cat-btn" onclick="filterCat('Mobile')">Mobile Games</button>
+      <button class="cat-btn" onclick="filterCat('PC')">PC Games</button>
+      <button class="cat-btn" onclick="openModal('libraryModal')">📚 My Library</button>
       <button class="cat-btn" onclick="openModal('adminModal')">🔐 Admin Panel</button>
     </div>
   </header>
 
-  <!-- MAIN CONTAINER -->
+  <!-- MAIN CONTENT -->
   <div class="container">
-    
-    <!-- HERO BANNER -->
     <div class="hero">
-      <span class="hero-badge">BEST SELLER PLATFORM</span>
-      <h1>Top Up & Game Store Digital 24 Jam</h1>
-      <p>Proses Otomatis, Termurah & Terpercaya. Login akun untuk membuka seluruh fitur transaksi.</p>
+      <span class="hero-badge">PLP TOP UP OFFICIAL</span>
+      <h1>Platform Top Up Game Kilat & Otomatis</h1>
+      <p>Proses 1-3 detik terhubung langsung ke Duitku QRIS dan Supplier VIP Reseller.</p>
     </div>
 
-    <!-- SECTION CATALOG -->
     <div class="section-title">
-      <span>🔥 Katalog Produk & Game</span>
-      <div>
-        <button class="btn" onclick="openModal('redeemModal')">🎁 Redeem Code</button>
-        <button class="btn" onclick="openModal('libraryModal')">📚 My Library</button>
-      </div>
+      <span>🔥 Katalog Game & Produk</span>
+      <button class="btn" onclick="openModal('redeemModal')">🎁 Redeem Code</button>
     </div>
     
     <div class="game-grid" id="gameGrid"></div>
-  </div>
-
-  <!-- MODAL AUTHENTICATION (WAJIB LOGIN) -->
-  <div id="authModal" class="modal">
-    <div class="modal-box">
-      <span class="close-btn" onclick="closeModal('authModal')">&times;</span>
-      <h3>🔑 Login / Buat Akun Game Store</h3>
-      <p style="font-size:0.8rem; color:#94a3b8; margin:8px 0 16px 0;">Anda wajib login terlebih dahulu untuk melakukan transaksi dan mengakses Game Library.</p>
-      
-      <input type="email" class="input-field" id="authEmail" placeholder="Masukkan Alamat Email">
-      <input type="password" class="input-field" id="authPassword" placeholder="Masukkan Password (Min. 6 Karakter)">
-      
-      <button class="pay-btn" onclick="handleLogin()">Login / Register Sekarang</button>
-    </div>
   </div>
 
   <!-- MODAL CART & CHECKOUT -->
   <div id="cartModal" class="modal">
     <div class="modal-box">
       <span class="close-btn" onclick="closeModal('cartModal')">&times;</span>
-      <h3>🛒 Keranjang & Checkout</h3>
-      <div id="cartItems" style="margin:16px 0; max-height:180px; overflow-y:auto;"></div>
-      
-      <input type="text" class="input-field" id="targetUserId" placeholder="User ID / Game ID Account (Contoh: 1775272376)">
-      <input type="text" class="input-field" id="targetZoneId" placeholder="Zone ID / Server (Khusus MLBB: 57096)">
-      
-      <div style="display:flex; justify-content:space-between; font-weight:800; margin-bottom:16px; font-size:1rem;">
-        <span>Total Pembayaran:</span>
+      <h3>🛒 Keranjang Belanja</h3>
+      <div id="cartItems" style="margin:12px 0;"></div>
+      <input type="text" class="input-field" id="targetUserId" placeholder="User ID Game (misal: 1775272376)">
+      <input type="text" class="input-field" id="targetZoneId" placeholder="Zone / Server ID (misal: 57096)">
+      <div style="display:flex; justify-content:space-between; font-weight:800; margin-bottom:12px;">
+        <span>Total:</span>
         <span id="cartTotal" style="color:#38bdf8;">Rp 0</span>
       </div>
-      
-      <button class="pay-btn" onclick="processCheckout()">Checkout (Duitku QRIS) 🚀</button>
+      <button class="pay-btn" onclick="processCheckout()">Bayar Sekarang (Duitku QRIS) 🚀</button>
     </div>
   </div>
 
-  <!-- MODAL GAME LIBRARY -->
+  <!-- MODAL LIBRARY -->
   <div id="libraryModal" class="modal">
     <div class="modal-box">
       <span class="close-btn" onclick="closeModal('libraryModal')">&times;</span>
-      <h3>📚 My Game Library & Entitlements</h3>
-      <div id="libraryList" style="margin-top:14px;">Belum ada game/item yang dibeli.</div>
+      <h3>📚 My Game Library & History</h3>
+      <div id="libraryList" style="margin-top:10px; font-size:0.85rem; color:#94a3b8;">Belum ada riwayat transaksi.</div>
     </div>
   </div>
 
-  <!-- MODAL REDEEM CODE -->
+  <!-- MODAL REDEEM -->
   <div id="redeemModal" class="modal">
     <div class="modal-box">
       <span class="close-btn" onclick="closeModal('redeemModal')">&times;</span>
-      <h3>🎁 Redeem Game Code</h3>
-      <p style="font-size:0.8rem; color:#94a3b8; margin-top:4px;">Klaim kode lisensi untuk menambah game ke Library secara otomatis.</p>
-      <input type="text" class="input-field" id="redeemInput" placeholder="Masukkan Kode (cth: SHIKI-2026)" style="margin-top:14px; text-transform:uppercase;">
-      <button class="pay-btn" onclick="claimRedeemCode()">Redeem Code</button>
+      <h3>🎁 Redeem Voucher Code</h3>
+      <input type="text" class="input-field" id="redeemCode" placeholder="Masukkan Kode Voucher (cth: PLP-2026)" style="margin-top:12px;">
+      <button class="pay-btn" onclick="claimRedeem()">Klaim Voucher</button>
     </div>
   </div>
 
-  <!-- MODAL ADMIN PANEL -->
+  <!-- MODAL ADMIN -->
   <div id="adminModal" class="modal">
     <div class="modal-box">
       <span class="close-btn" onclick="closeModal('adminModal')">&times;</span>
       <h3>🔐 Admin Panel Dashboard</h3>
-      <div style="margin-top:14px;">
-        <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:12px;">Status: Connected to Duitku QRIS & VIP Reseller Supplier API</p>
-        <button class="btn btn-primary" style="width:100%; margin-bottom:8px;" onclick="alert('Database Sync Normal.')">🔄 Synchronize Product Catalog</button>
-        <button class="btn" style="width:100%;" onclick="alert('Audit logs recorded.')">📝 View Transaction Audit Logs</button>
-      </div>
+      <p style="font-size:0.8rem; color:#94a3b8; margin-top:8px;">Status System: Duitku Gateway & VIP Reseller Connected.</p>
     </div>
   </div>
 
   <footer>
-    <p>&copy; 2026 SHIKIMORI GAME STORE. Powered by VIP Reseller & Duitku Payment Gateway.</p>
+    <p>&copy; 2026 PLP TOP UP. Platform Resmi Top Up Game & Digital Store.</p>
   </footer>
 
   <script>
-    // DATA RATUSAN/PILIHAN PRODUK STORE
     const catalog = [
-      { id: 'ML86', title: 'Mobile Legends 86 Diamond', type: 'Mobile', category: 'Action', price: 20000, icon: '⚔️' },
-      { id: 'ML172', title: 'Mobile Legends 172 Diamond', type: 'Mobile', category: 'Action', price: 40000, icon: '⚔️' },
-      { id: 'ML257', title: 'Mobile Legends 257 Diamond', type: 'Mobile', category: 'Action', price: 60000, icon: '⚔️' },
-      { id: 'FF140', title: 'Free Fire 140 Diamond', type: 'Mobile', category: 'Action', price: 19000, icon: '🔥' },
-      { id: 'FF355', title: 'Free Fire 355 Diamond', type: 'Mobile', category: 'Action', price: 48000, icon: '🔥' },
-      { id: 'PUBG60', title: 'PUBG Mobile 60 UC', type: 'Mobile', category: 'Action', price: 15000, icon: '🪂' },
-      { id: 'PUBG325', title: 'PUBG Mobile 325 UC', type: 'Mobile', category: 'Action', price: 75000, icon: '🪂' },
-      { id: 'CP2077', title: 'Cyberpunk 2077 Digital Edition', type: 'PC', category: 'RPG', price: 450000, icon: '🎮' },
-      { id: 'RE4', title: 'Resident Evil 4 Remake', type: 'PC', category: 'Action', price: 380000, icon: '☣️' },
-      { id: 'GTA5', title: 'Grand Theft Auto V Premium', type: 'PC', category: 'Action', price: 200000, icon: '🚗' },
-      { id: 'CIV6', title: 'Civilization VI Strategy', type: 'PC', category: 'Strategy', price: 250000, icon: '🏛️' }
+      { id: 'ML86', title: 'Mobile Legends 86 Diamond', type: 'Mobile', price: 20000, icon: '⚔️' },
+      { id: 'ML172', title: 'Mobile Legends 172 Diamond', type: 'Mobile', price: 40000, icon: '⚔️' },
+      { id: 'ML257', title: 'Mobile Legends 257 Diamond', type: 'Mobile', price: 60000, icon: '⚔️' },
+      { id: 'FF140', title: 'Free Fire 140 Diamond', type: 'Mobile', price: 19000, icon: '🔥' },
+      { id: 'FF355', title: 'Free Fire 355 Diamond', type: 'Mobile', price: 48000, icon: '🔥' },
+      { id: 'PUBG60', title: 'PUBG Mobile 60 UC', type: 'Mobile', price: 15000, icon: '🪂' },
+      { id: 'PUBG325', title: 'PUBG Mobile 325 UC', type: 'Mobile', price: 75000, icon: '🪂' },
+      { id: 'CP2077', title: 'Cyberpunk 2077 Digital', type: 'PC', price: 450000, icon: '🎮' },
+      { id: 'RE4', title: 'Resident Evil 4 Remake', type: 'PC', price: 380000, icon: '☣️' }
     ];
 
     let currentUser = null;
     let cart = [];
     let library = [];
 
-    // RENDER KATALOG
     function renderCatalog(items) {
       const grid = document.getElementById('gameGrid');
       grid.innerHTML = '';
@@ -218,156 +196,99 @@
             <div class="card-body">
               <div class="card-title">${item.title}</div>
               <div class="card-meta">
-                <span>${item.type} • ${item.category}</span>
+                <span>${item.type}</span>
                 <span class="card-price">Rp ${item.price.toLocaleString('id-ID')}</span>
               </div>
-              <div class="card-actions">
-                <button class="btn-card btn-primary" onclick="addToCart('${item.title}', ${item.price}, '${item.id}')">+ Keranjang</button>
-              </div>
+              <button class="btn-card" onclick="addToCart('${item.title}', ${item.price}, '${item.id}')">+ Keranjang</button>
             </div>
           </div>
         `;
       });
     }
 
-    // AUTHENTICATION LOGIC
-    function handleLogin() {
-      const email = document.getElementById('authEmail').value.trim();
-      const pass = document.getElementById('authPassword').value.trim();
+    // LOGIN GOOGLE AUTOMATIC
+    function handleGoogleLogin(response) {
+      const token = response.credential;
+      // Decode JWT Payload Sederhana untuk Mengambil Nama/Email
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+      
+      const payload = JSON.parse(jsonPayload);
+      currentUser = payload.email;
 
-      if (!email || pass.length < 6) {
-        alert('Harap masukkan Email valid dan Password minimal 6 karakter!');
-        return;
-      }
-
-      currentUser = { email, name: email.split('@')[0] };
-      document.getElementById('userName').innerText = currentUser.name;
+      document.getElementById('userName').innerText = payload.given_name || payload.name;
       document.getElementById('userBadge').style.display = 'inline-block';
-      document.getElementById('loginNavBtn').style.display = 'none';
+      document.querySelector('.g_id_signin').style.display = 'none';
 
-      alert(`Berhasil Login sebagai ${currentUser.email}!`);
-      closeModal('authModal');
+      alert(`Berhasil Login dengan Akun Google: ${currentUser}`);
     }
 
-    // CART SYSTEM
     function addToCart(title, price, code) {
       if (!currentUser) {
-        alert('Anda WAJIB LOGIN terlebih dahulu sebelum menambahkan produk ke keranjang!');
-        openModal('authModal');
+        alert('Anda WAJIB LOGIN akun Google terlebih dahulu di pojok kanan atas!');
         return;
       }
-
       cart.push({ title, price, code });
       document.getElementById('cartCount').innerText = cart.length;
       updateCartUI();
-      alert(`${title} berhasil dimasukkan ke keranjang!`);
+      alert(`${title} ditambahkan ke keranjang!`);
     }
 
     function updateCartUI() {
       const list = document.getElementById('cartItems');
       list.innerHTML = '';
       let total = 0;
-      cart.forEach(item => {
-        total += item.price;
-        list.innerHTML += `
-          <div class="item-row">
-            <span>${item.title}</span>
-            <span style="color:#38bdf8; font-weight:700;">Rp ${item.price.toLocaleString('id-ID')}</span>
-          </div>
-        `;
+      cart.forEach(i => {
+        total += i.price;
+        list.innerHTML += `<div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #1e293b; font-size:0.8rem;"><span>${i.title}</span><span>Rp ${i.price.toLocaleString('id-ID')}</span></div>`;
       });
       document.getElementById('cartTotal').innerText = `Rp ${total.toLocaleString('id-ID')}`;
     }
 
-    // CHECKOUT PROCESS VIA DUITKU API
     async function processCheckout() {
       if (!currentUser) {
-        alert('Harap Login terlebih dahulu!');
-        openModal('authModal');
+        alert('Harap login Google terlebih dahulu!');
         return;
       }
-
-      if (cart.length === 0) {
-        alert('Keranjang Anda masih kosong!');
-        return;
-      }
-
-      const targetUserId = document.getElementById('targetUserId').value.trim();
-      const targetZoneId = document.getElementById('targetZoneId').value.trim();
-      const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
-
-      const btn = document.querySelector('#cartModal .pay-btn');
-      btn.innerText = 'Memproses Pesanan ke Gateway...';
-      btn.disabled = true;
+      if (cart.length === 0) return alert('Keranjang kosong!');
+      
+      const userId = document.getElementById('targetUserId').value.trim();
+      const zoneId = document.getElementById('targetZoneId').value.trim();
+      const total = cart.reduce((sum, i) => sum + i.price, 0);
 
       try {
-        const response = await fetch('/api/index', {
+        const res = await fetch('/api/index', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            userId: targetUserId || currentUser.email,
-            zoneId: targetZoneId || '',
-            productCode: cart[0].code,
-            price: totalAmount
-          })
+          body: JSON.stringify({ userId, zoneId, productCode: cart[0].code, price: total })
         });
-
-        const data = await response.json();
-
+        const data = await res.json();
         if (data.success && data.checkoutUrl) {
           library.push(...cart);
-          updateLibraryUI();
           window.location.href = data.checkoutUrl;
         } else {
-          alert('Gagal memproses pembayaran: ' + (data.message || 'Error Server API'));
+          alert('Gagal: ' + (data.message || 'Error API'));
         }
-      } catch (err) {
-        alert('Gagal terhubung ke Server API Duitku/VIP Reseller.');
-      } finally {
-        btn.innerText = 'Checkout (Duitku QRIS) 🚀';
-        btn.disabled = false;
+      } catch (e) {
+        alert('Gagal koneksi ke server API.');
       }
     }
 
-    // REDEEM CODE LOGIC
-    function claimRedeemCode() {
-      if (!currentUser) {
-        alert('Harap Login terlebih dahulu untuk melakukan Redeem Code!');
-        openModal('authModal');
-        return;
-      }
-
-      const code = document.getElementById('redeemInput').value.trim();
-      if (code === 'SHIKI-2026' || code === 'TOPUP-VIP') {
-        alert('Selamat! Kode redeem valid. Item berhasil ditambahkan ke Library.');
-        library.push({ title: 'VIP Bonus Game Pass 2026', icon: '🎁' });
-        updateLibraryUI();
+    function claimRedeem() {
+      const code = document.getElementById('redeemCode').value.trim();
+      if (code === 'PLP-2026') {
+        alert('Voucher berhasil diklaim!');
         closeModal('redeemModal');
       } else {
-        alert('Kode Redeem tidak terdaftar atau sudah tidak berlaku.');
+        alert('Kode voucher tidak berlaku.');
       }
     }
 
-    function updateLibraryUI() {
-      const list = document.getElementById('libraryList');
-      if (library.length === 0) return;
-      list.innerHTML = library.map(l => `
-        <div class="item-row">
-          <div><strong>${l.title}</strong><br><small style="color:#10b981;">Entitlement Status: Active & Delivered</small></div>
-        </div>
-      `).join('');
-    }
-
-    // FILTER & SEARCH
-    function filterCategory(cat) {
+    function filterCat(cat) {
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
       event.target.classList.add('active');
-      
-      if (cat === 'All') {
-        renderCatalog(catalog);
-      } else {
-        renderCatalog(catalog.filter(c => c.type === cat || c.category === cat));
-      }
+      renderCatalog(cat === 'All' ? catalog : catalog.filter(c => c.type === cat));
     }
 
     function searchGames() {
