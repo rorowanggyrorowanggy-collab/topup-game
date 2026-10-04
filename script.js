@@ -2,7 +2,8 @@ const products = {
   mlbb: [
     { name: '86 Diamond', price: 20000, code: 'ML86' },
     { name: '172 Diamond', price: 40000, code: 'ML172' },
-    { name: '257 Diamond', price: 60000, code: 'ML257' }
+    { name: '257 Diamond', price: 60000, code: 'ML257' },
+    { name: '706 Diamond', price: 160000, code: 'ML706' }
   ],
   ff: [
     { name: '140 Diamond', price: 19000, code: 'FF140' },
@@ -10,8 +11,8 @@ const products = {
     { name: '720 Diamond', price: 95000, code: 'FF720' }
   ],
   pubg: [
-    { name: '60 UC', price: 15000, code: 'PUBG60' },
-    { name: '325 UC', price: 75000, code: 'PUBG325' }
+    { name: '60 Unknown Cash', price: 15000, code: 'PUBG60' },
+    { name: '325 Unknown Cash', price: 75000, code: 'PUBG325' }
   ]
 };
 
@@ -24,22 +25,25 @@ function loadProducts(gameKey) {
   selectedNominal = null;
 
   products[gameKey].forEach(item => {
-    const btn = document.createElement('button');
-    btn.className = 'nominal-btn';
-    btn.innerHTML = `${item.name}<br><strong>Rp ${item.price.toLocaleString('id-ID')}</strong>`;
-    btn.onclick = () => {
-      document.querySelectorAll('.nominal-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    const card = document.createElement('div');
+    card.className = 'nominal-card';
+    card.innerHTML = `
+      <div class="item-name">💎 ${item.name}</div>
+      <div class="item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
+    `;
+    card.onclick = () => {
+      document.querySelectorAll('.nominal-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
       selectedNominal = item;
     };
-    grid.appendChild(btn);
+    grid.appendChild(card);
   });
 }
 
-function switchGame(gameKey) {
+function switchGame(gameKey, element) {
   currentGame = gameKey;
-  document.querySelectorAll('.game-btn').forEach(b => b.classList.remove('active'));
-  if (event && event.target) event.target.classList.add('active');
+  document.querySelectorAll('.game-card').forEach(c => c.classList.remove('active'));
+  element.classList.add('active');
 
   const zoneInput = document.getElementById('zoneId');
   if (gameKey === 'mlbb') {
@@ -57,12 +61,12 @@ async function processPayment() {
   const paymentMethod = document.getElementById('paymentMethod').value;
 
   if (!userId || !selectedNominal) {
-    alert('Harap isi ID Akun dan pilih nominal!');
+    alert('Harap isi User ID dan pilih nominal item!');
     return;
   }
 
   const btn = document.querySelector('.pay-btn');
-  btn.innerText = 'Memproses...';
+  btn.innerText = 'Memproses Pesanan...';
   btn.disabled = true;
 
   try {
@@ -88,7 +92,7 @@ async function processPayment() {
   } catch (error) {
     alert('Terjadi kesalahan koneksi ke server.');
   } finally {
-    btn.innerText = 'Bayar Sekarang';
+    btn.innerText = 'Beli Sekarang 🚀';
     btn.disabled = false;
   }
 }
